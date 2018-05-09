@@ -16,6 +16,8 @@ docs/installation.rst
 docs/make.bat
 docs/readme.rst
 docs/usage.rst
+lexicalrichness/__init__.py
+lexicalrichness/lexicalrichness.py
 lexicalrichness.egg-info/PKG-INFO
 lexicalrichness.egg-info/SOURCES.txt
 lexicalrichness.egg-info/dependency_links.txt

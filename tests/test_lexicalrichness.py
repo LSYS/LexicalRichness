@@ -7,7 +7,7 @@
 import unittest
 
 # from lexicalrichness import lexicalrichness
-from lexicalrichness import *
+from lexicalrichness.lexicalrichness import *
 import textblob
 
 
