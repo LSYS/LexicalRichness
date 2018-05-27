@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: lexicalrichness
-Version: 0.1.2
+Version: 0.1.3
 Summary: A small module to compute textual lexical richness
 Home-page: https://github.com/LSYS/lexicalrichness
 Author: Lucas Shen YS
 Author-email: shen1ys@gmail.com
 License: MIT license
-Download-URL: https://github.com/LSYS/lexicalrichness/archive/0.1.2.tar.gz
+Download-URL: https://github.com/LSYS/lexicalrichness/archive/0.1.3.tar.gz
 Description-Content-Type: UNKNOWN
 Description: ===============
         LexicalRichness
@@ -35,7 +35,7 @@ Description: ===============
         
         .. code-block:: python
         
-        	>>> import lexicalrichness
+        	>>> from lexicalrichness import LexicalRichness
         	
         	# Generate object of readability statistics.
         	>>> text = """Measure of textual lexical diversity, computed as the mean length of sequential words in
@@ -178,7 +178,9 @@ Description: ===============
         
         * First release on PyPI.
         
-        
+        0.1.3 (2018-05-27)
+        ------------------
+        * fixed minor compatibility issue with hyphens (ascii) in python 2.
         
 Keywords: lexical diversity,lexical richness,vocabulary diversity,lexical density,lexical
 Platform: UNKNOWN
