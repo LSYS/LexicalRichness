@@ -7,4 +7,6 @@ History
 
 * First release on PyPI.
 
-
+0.1.3 (2018-05-27)
+------------------
+* fixed minor compatibility issue with hyphens (ascii) in python 2.

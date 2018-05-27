@@ -37,6 +37,6 @@ setup(
     name='lexicalrichness',
     packages=find_packages(include=['lexicalrichness']),
     url='https://github.com/LSYS/lexicalrichness',
-    download_url='https://github.com/LSYS/lexicalrichness/archive/0.1.2.tar.gz',
-    version='0.1.2'
+    download_url='https://github.com/LSYS/lexicalrichness/archive/0.1.3.tar.gz',
+    version='0.1.3'
 )

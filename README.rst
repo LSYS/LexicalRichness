@@ -25,7 +25,7 @@ Quickstart
 
 .. code-block:: python
 
-	>>> from lexicalrichness.lexicalrichness import LexicalRichness
+	>>> from lexicalrichness import LexicalRichness
 	
 	# Generate object of readability statistics.
 	>>> text = """Measure of textual lexical diversity, computed as the mean length of sequential words in

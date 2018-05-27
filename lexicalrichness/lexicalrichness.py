@@ -33,9 +33,12 @@ def preprocess(text):
     text = re.sub(r'[0-9]+', '', text.lower())
 
     # Replace dashes/hyphens
-    text = text.replace('–', '')
-    text = text.replace('—', '')
-    text = text.replace('-', '')
+    if sys.version_info[0] == 3:
+        text = text.replace('–', '')
+        text = text.replace('—', '')
+        text = text.replace('-', '')
+    else:
+        text =text.replace('-', '')
     return text
 
 
