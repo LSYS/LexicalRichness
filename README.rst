@@ -4,7 +4,7 @@ LexicalRichness
 
 
 .. image:: https://img.shields.io/pypi/v/lexicalrichness.svg
-        :target: https://pypi.python.org/pypi/lexicalrichness
+        :target: https://pypi.org/project/lexicalrichness/
 
 .. image:: https://readthedocs.org/projects/lexicalrichness/badge/?version=latest
         :target: https://lexicalrichness.readthedocs.io/en/latest/?badge=latest
