@@ -27,7 +27,7 @@ Quickstart
 
 	>>> from lexicalrichness import LexicalRichness
 	
-	# Generate object of readability statistics.
+	# text example
 	>>> text = """Measure of textual lexical diversity, computed as the mean length of sequential words in
             		a text that maintains a minimum threshold TTR score.
 		
