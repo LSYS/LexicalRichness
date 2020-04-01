@@ -37,8 +37,8 @@ Quickstart
             		(McCarthy 2005, McCarthy and Jarvis 2010)"""
 	
 	# instantiate new text object (use use_TextBlob=True argument to use the textblob tokenizer)
-	>>> lex = lexicalrichness(text)
-	
+	>>> lex = LexicalRichness(text)
+
 	# Return word count.
 	>>> lex.words
 	57
