@@ -18,12 +18,14 @@ class TestLexicalrichness(unittest.TestCase):
         self.s1 = "TEST text with some text numbers 42, hyphen-here, and text punctuations."
         self.s2 = "TEST text with some text numbers 42, hyphen–here, and text punctuations."
         self.s3 = "TEST text with some text numbers 42, hyphen—here, and text punctuations."
+        self.wordlist = "TEST text with some text numbers hyphenhere and text punctuations".split()
         self.emptystring = ''
 
         self.obj1 = LexicalRichness(self.s1)
         self.obj2 = LexicalRichness(self.s2)
         self.obj3 = LexicalRichness(self.s3)
         self.emptyobj = LexicalRichness(self.emptystring)
+        self.wordlistobj = LexicalRichness(self.wordlist, preprocessor=None, tokenizer=None)
 
     def tearDown(self):
         print('tearing down\n')
@@ -76,11 +78,13 @@ class TestLexicalrichness(unittest.TestCase):
     def test_words(self):
         print('testing words')
         self.assertEqual(self.obj1.words, 10)
+        self.assertEqual(self.wordlistobj.words, 10)
         self.assertEqual(self.emptyobj.words, 0)
 
     def test_terms(self):
         print('testing terms')
         self.assertEqual(self.obj1.terms, 8)
+        self.assertEqual(self.wordlistobj.terms, 8)
         self.assertEqual(self.emptyobj.terms, 0)
 
     def test_ttr(self):

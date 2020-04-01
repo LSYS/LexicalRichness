@@ -133,16 +133,20 @@ class LexicalRichness(object):
         Lexical Diversity or Vocabulary Diversity.)
     """
 
-    def __init__(self, text, use_TextBlob=False):
+    def __init__(self, text, preprocessor=preprocess, tokenizer=tokenize):
         """ Initialise object with basic attributes needed to compute the common lexical diversity measures.
 
             Parameters
             ----------
-            text: string
-                String (or unicode) variable containing textual data.
-            use_TextBlob: bool
-                If True, use TextBlob to tokenize text.
-                If False, use built-in string methods.
+            text: string or list
+                String (or unicode) variable containing textual data, or a list
+                of tokens if the text is already tokenized.
+            preprocessor: callable or None
+                A callable for preprocessing the text. Default is the built-in
+                `preprocess` function. If None, no preprocessing is applied.
+            tokenizer: callable or None
+                A callable for tokenizing the text. Default is the built-in
+                `tokenize` function. If None, the text parameter should be a list.
 
             Attributes
             ----------
@@ -152,30 +156,33 @@ class LexicalRichness(object):
                 Number of words in text.
             terms: int
                 Number of unique terms/vocabb in text.
-            tokenizer: string
-                Description of tokenizer used.
+            preprocessor: callable
+                The preprocessor used.
+            tokenizer: callable
+                The tokenizer used.
 
             Helpers Functions
             -----------------
             preprocess(string):
-                Preprocess text before tokenizing
+                Preprocess text before tokenizing (if preprocessor=preprocess)
             blobber(string)
-                Tokenize text using TextBlob (if use_TextBlob=True)
+                Tokenize text using TextBlob (if tokenizer=blobber)
             tokenize(string)
-                Tokenize text using built-in string methods (if use_TextBlob=False)
+                Tokenize text using built-in string methods (if tokenizer=tokenize)
         """
-        self.text = preprocess(text)
+        self.preprocessor = preprocessor
+        self.tokenizer = tokenizer
 
-        if use_TextBlob:
-            self.wordlist = blobber(self.text)
-            self.words = len(self.wordlist)
-            self.terms = len(set(self.wordlist))
-            self.tokenizer = "{} (ver. {})".format(textblob.__name__, textblob.__version__)
+        if self.preprocessor:
+            text = self.preprocessor(text)
+
+        if self.tokenizer:
+            self.wordlist = self.tokenizer(text)
         else:
-            self.wordlist = tokenize(self.text)
-            self.words = len(self.wordlist)
-            self.terms = len(set(self.wordlist))
-            self.tokenizer = 'default'
+            self.wordlist = text
+
+        self.words = len(self.wordlist)
+        self.terms = len(set(self.wordlist))
 
 
     # Lexical richness measures
@@ -451,4 +458,6 @@ class LexicalRichness(object):
 
 
     def __repr__(self):
-        return 'String(words={}, terms={}, tokenizer={}, wordlist={}, string="{}")'.format(self.words, self.terms, self.tokenizer, self.wordlist, ' '.join(self.wordlist))
+        return 'LexicalRichness(words={}, terms={}, preprocessor={}, tokenizer={}, wordlist={}, string="{}")'.format(
+            self.words, self.terms, self.preprocessor, self.tokenizer, self.wordlist, ' '.join(self.wordlist)
+        )
