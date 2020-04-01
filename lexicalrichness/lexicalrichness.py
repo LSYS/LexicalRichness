@@ -8,11 +8,29 @@ if sys.version_info[0] == 3:
 
 from collections import Counter
 from itertools import islice
-from textblob import TextBlob
 import re
 import string
 from math import sqrt, log
 from scipy.stats import hypergeom
+
+try:
+    from textblob import TextBlob
+except ImportError:
+    pass
+else:
+    def blobber(text):
+        """ Tokenize text into a list of tokens using TextBlob.
+
+            Parameter
+            ---------
+            text: string
+
+            Return
+            ------
+            TextBlob list of words
+        """
+        blob = TextBlob(text)
+        return blob.words
 
 
 def preprocess(text):
@@ -59,21 +77,6 @@ def tokenize(text):
 
     words = text.split()
     return words
-
-
-def blobber(text):
-    """ Tokenize text into a list of tokens using TextBlob.
-
-        Parameter
-        ---------
-        text: string
-
-        Return
-        ------
-        TextBlob list of words
-    """
-    blob = TextBlob(text)
-    return blob.words
 
 
 def segment_generator(List, segment_size):
