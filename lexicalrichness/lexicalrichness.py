@@ -9,7 +9,6 @@ if sys.version_info[0] == 3:
 from collections import Counter
 from itertools import islice
 from textblob import TextBlob
-import textblob
 import re
 import string
 from math import sqrt, log
