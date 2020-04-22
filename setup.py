@@ -12,7 +12,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 
-requirements = ['scipy>=1.0.0']
+requirements = ['scipy>=1.0.0', 'textblob>=0.15.3']
 
 setup(
     author="Lucas Shen YS",
