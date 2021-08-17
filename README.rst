@@ -43,7 +43,7 @@ Quickstart
 	>>> lex.words
 	57
 
-	# Return (unique) term count.
+	# Return (unique) word count.
 	>>> lex.terms
 	39
 
