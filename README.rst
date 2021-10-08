@@ -11,7 +11,7 @@ LexicalRichness
         :alt: Documentation Status
 
 
-A small python module to compute textual lexical richness measures
+A small python module to compute textual lexical richness (aka lexical diversity) measures.
 
 Installation
 ------------
