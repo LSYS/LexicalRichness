@@ -158,3 +158,8 @@ Assessing method docstrings
 	Returns
 	_______
 	float
+
+
+.. image:: https://api.codacy.com/project/badge/Grade/dd2e4ca411b04c77bdf9faedee641ad8
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/gh/LSYS/LexicalRichness?utm_source=github.com&utm_medium=referral&utm_content=LSYS/LexicalRichness&utm_campaign=Badge_Grade_Settings
