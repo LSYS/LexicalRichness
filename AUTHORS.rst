@@ -5,9 +5,10 @@ Credits
 Development Lead
 ----------------
 
-* Shen Yan Shun (Lucas) <shen1ys@gmail.com>
+* Lucas Shen Y. S. <lucas@lucasshen.com>
 
 Contributors
 ------------
 
+* Christophe Bedetti
 * David Lesieur

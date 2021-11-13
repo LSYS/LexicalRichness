@@ -1,24 +1,79 @@
 ===============
 LexicalRichness
 ===============
-
-
-.. image:: https://img.shields.io/pypi/v/lexicalrichness.svg
+.. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
+.. image:: https://badgen.net/github/release/Naereen/Strapdown.js
+        :target: https://github.com/LSYS/LexicalRichness.js/releases
+.. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
+        :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
 
-.. image:: https://readthedocs.org/projects/lexicalrichness/badge/?version=latest
-        :target: https://lexicalrichness.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
 
+.. image:: https://img.shields.io/lgtm/grade/python/g/LSYS/LexicalRichness.svg?logo=lgtm&logoWidth=18)
+        :target: https://lgtm.com/projects/g/LSYS/LexicalRichness/context:python
+.. image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
+	:target: https://img.shields.io/pypi/pyversions/lexicalrichness  
 
+.. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
+   :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
+
+.. |Maintenance yes| image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
+   :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
+	
+
+.. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
+        :target: http://makeapullrequest.com
+.. image:: https://img.shields.io/badge/License-MIT-blue.svg
+        :target: https://lbesson.mit-license.org
+.. image:: https://mybinder.org/badge_logo.svg
+        :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
+	
+	
 A small python module to compute textual lexical richness (aka lexical diversity) measures.
+
+Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
+
+.. image:: http://ForTheBadge.com/images/badges/made-with-python.svg
+   :target: https://www.python.org/
 
 Installation
 ------------
+**Install using PIP**
 
 .. code-block:: bash
 
-	$ pip install lexicalrichness
+	pip install lexicalrichness
+
+If you encounter, 
+
+
+.. code-block:: python
+
+	ModuleNotFoundError: No module named 'textblob'
+
+install textblob:
+
+.. code-block:: bash
+
+	pip install textblob
+	
+**Install manually from GitHub**
+
+.. code-block:: bash
+
+	git clone https://github.com/LSYS/LexicalRichness.git
+	cd LexicalRichness
+	pip install .
+
+
+**Run from the cloud**
+
+Try the package on the cloud (without setting anything up on your local machine) by clicking the icon here:  
+
+|mybinder|
+
+.. |mybinder| image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
 
 Quickstart
 ----------
@@ -158,3 +213,48 @@ Assessing method docstrings
 	Returns
 	_______
 	float
+	
+Alternatively, just do
+
+.. code-block:: python
+
+	>>> print(lex.hdd.__doc__)
+	
+	Hypergeometric distribution diversity (HD-D) score.
+
+            For each term (t) in the text, compute the probabiltiy (p) of getting at least one appearance
+            of t with a random draw of size n < N (text size). The contribution of t to the final HD-D
+            score is p * (1/n). The final HD-D score thus sums over p * (1/n) with p computed for
+            each term t. Described in McCarthy and Javis 2007, p.g. 465-466.
+            (McCarthy and Jarvis 2007)
+
+            Parameters
+            ----------
+            draws: int
+                Number of random draws in the hypergeometric distribution (default=42).
+
+            Returns
+            -------
+            float	
+
+Contributing
+------------
+Author
+++++++
+Lucas Shen
+
+Contributors
+++++++++++++
+* `Christophe Bedetti <https://github.com/cbedetti>`__
+* `David Lesieur <https://github.com/davidlesieur>`__
+
+Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. 
+See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
+See here for `Contributor Code of
+Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
+
+License
+-------
+
+The package is released under the `MIT
+License <https://opensource.org/licenses/MIT>`__.
