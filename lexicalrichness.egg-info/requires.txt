@@ -1,2 +1,2 @@
 scipy>=1.0.0
-textblob
+textblob>=0.15.3
