@@ -16,7 +16,7 @@ requirements = ['scipy>=1.0.0', 'textblob>=0.15.3']
 
 setup(
     author="Lucas Shen YS",
-    author_email='shen1ys@gmail.com',
+    author_email='lucas@lucasshen.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -27,8 +27,9 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
-    description="A small module to compute textual lexical richness",
+    description="A small module to compute textual lexical richness (aka lexical diversity).",
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
@@ -37,6 +38,6 @@ setup(
     name='lexicalrichness',
     packages=find_packages(include=['lexicalrichness']),
     url='https://github.com/LSYS/lexicalrichness',
-    download_url='https://github.com/LSYS/lexicalrichness/archive/0.1.3.tar.gz',
-    version='0.1.3'
+    download_url='https://github.com/LSYS/lexicalrichness/archive/0.1.4.tar.gz',
+    version='0.1.4'
 )
