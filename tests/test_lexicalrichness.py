@@ -7,7 +7,7 @@
 import unittest
 
 from lexicalrichness import *
-import textblob
+# import textblob
 
 
 class TestLexicalrichness(unittest.TestCase):
@@ -41,11 +41,11 @@ class TestLexicalrichness(unittest.TestCase):
         self.assertIs(type(tokenize(self.s3)), list)
         self.assertIs(type(tokenize(self.emptystring)), list)
 
-    def test_blobber(self):
-        self.assertIs(type(blobber(self.s1)), textblob.blob.WordList)
-        self.assertIs(type(blobber(self.s2)), textblob.blob.WordList)
-        self.assertIs(type(blobber(self.s3)), textblob.blob.WordList)
-        self.assertIs(type(blobber(self.emptystring)), textblob.blob.WordList)
+    # def test_blobber(self):
+    #     self.assertIs(type(blobber(self.s1)), textblob.blob.WordList)
+    #     self.assertIs(type(blobber(self.s2)), textblob.blob.WordList)
+    #     self.assertIs(type(blobber(self.s3)), textblob.blob.WordList)
+    #     self.assertIs(type(blobber(self.emptystring)), textblob.blob.WordList)
 
     def test_list_sliding_window(self):
         test_list = ['a', 'b', 'c', 'd']
