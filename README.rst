@@ -4,9 +4,14 @@ LexicalRichness
 .. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
 .. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness.svg
-        :target: https://anaconda.org/conda-forge/lexicalrichness	
+        :target: https://anaconda.org/conda-forge/lexicalrichness
+.. image:: https://img.shields.io/conda/pn/conda-forge/lexicalrichness   
+	:target: https://anaconda.org/conda-forge/lexicalrichness
 .. image:: https://badgen.net/github/release/Naereen/Strapdown.js
         :target: https://github.com/LSYS/LexicalRichness.js/releases
+
+.. image:: https://github.com/LSYS/LexicalRichness/blob/housekeep/images/ghdocbadge.svg
+        :target: https://github.com/LSYS/LexicalRichness/blob/master/README.rst
 	
 .. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
         :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
