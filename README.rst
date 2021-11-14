@@ -3,17 +3,18 @@ LexicalRichness
 ===============
 .. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
+.. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness.svg
+        :target: https://anaconda.org/conda-forge/lexicalrichness	
 .. image:: https://badgen.net/github/release/Naereen/Strapdown.js
         :target: https://github.com/LSYS/LexicalRichness.js/releases
+	
 .. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
         :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
-
-
 .. image:: https://img.shields.io/lgtm/grade/python/g/LSYS/LexicalRichness.svg?logo=lgtm&logoWidth=18)
         :target: https://lgtm.com/projects/g/LSYS/LexicalRichness/context:python
+
 .. image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
 	:target: https://img.shields.io/pypi/pyversions/lexicalrichness  
-
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
    :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
 
@@ -46,7 +47,6 @@ Installation
 
 If you encounter, 
 
-
 .. code-block:: python
 
 	ModuleNotFoundError: No module named 'textblob'
@@ -56,15 +56,33 @@ install textblob:
 .. code-block:: bash
 
 	pip install textblob
-	
-**Install manually from GitHub**
+
+*Note*: This error should only exist for :code:`versions <= v0.1.3`. Fixed in 
+`v0.1.4 <https://github.com/LSYS/LexicalRichness/releases/tag/0.1.4>`__ by `David Lesieur <https://github.com/davidlesieur>`__ and `Christophe Bedetti <https://github.com/cbedetti>`__.
+
+
+**Install from Conda-Forge**
+
+*LexicalRichness* is now also available on conda-forge. If you have are using the `Anaconda <https://www.anaconda.com/distribution/#download-section>`__ or `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ distribution, you can create a conda environment and install the package from conda.
+
+.. code-block:: bash
+
+	conda create -n lex
+	conda activate lex 
+	conda install -c conda-forge lexicalrichness
+
+*Note*: If you get an error with :code:`conda activate lex` in *Bash* either try
+
+	* :code:`conda activate bash` in the *Anaconda Prompt* and then retry :code:`conda activate lex` in *Bash*
+	* or just try :code:`source activate lex` in *Bash*
+
+**Install manually using Git and GitHub**
 
 .. code-block:: bash
 
 	git clone https://github.com/LSYS/LexicalRichness.git
 	cd LexicalRichness
 	pip install .
-
 
 **Run from the cloud**
 
