@@ -71,7 +71,7 @@ install textblob:
 	conda activate lex 
 	conda install -c conda-forge lexicalrichness
 
-*Note*: If you get an error with :code:`conda activate lex` in *Bash* either try
+*Note*: If you get the error :code:`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'` with :code:`conda activate lex` in *Bash* either try
 
 	* :code:`conda activate bash` in the *Anaconda Prompt* and then retry :code:`conda activate lex` in *Bash*
 	* or just try :code:`source activate lex` in *Bash*
