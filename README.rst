@@ -169,8 +169,8 @@ Quickstart
 	>>> lex.Maas
 	0.023215679867353005
 
-Attributes and properties
-+++++++++++++++++++++++++
+Attributes
+----------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``wordlist``            | list of words                                                   		      |
@@ -199,7 +199,7 @@ Attributes and properties
 +-------------------------+-----------------------------------------------------------------------------------+
 
 Methods
-+++++++
+-------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``msttr``            	  | Mean segmental TTR (Johnson 1944)						      |
@@ -211,8 +211,8 @@ Methods
 | ``hdd``                 | HD-D (McCarthy and Jarvis 2007)                                                   |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-Assessing method docstrings
----------------------------
+**Assessing method docstrings**
+
 .. code-block:: python
 
 	>>> import inspect
@@ -262,12 +262,12 @@ Alternatively, just do
 
 Contributing
 ------------
-Author
-++++++
+**Author**
+
 Lucas Shen
 
-Contributors
-++++++++++++
+**Contributors**
+
 * `Christophe Bedetti <https://github.com/cbedetti>`__
 * `David Lesieur <https://github.com/davidlesieur>`__
 
