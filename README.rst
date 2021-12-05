@@ -42,8 +42,8 @@ Lexical richness refers to the range and variety of vocabulary deployed in a tex
 .. image:: http://ForTheBadge.com/images/badges/made-with-python.svg
    :target: https://www.python.org/
 
-Installation
-------------
+1. Installation
+---------------
 **Install using PIP**
 
 .. code-block:: bash
@@ -98,8 +98,8 @@ Try the package on the cloud (without setting anything up on your local machine)
 .. |mybinder| image:: https://mybinder.org/badge_logo.svg
  :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
 
-Quickstart
-----------
+2. Quickstart
+-------------
 
 .. code-block:: python
 
@@ -169,8 +169,8 @@ Quickstart
 	>>> lex.Maas
 	0.023215679867353005
 
-Attributes
-----------
+3. Attributes
+-------------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``wordlist``            | list of words                                                   		      |
@@ -198,8 +198,8 @@ Attributes
 | ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) Maas (1972)                                     |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-Methods
--------
+4. Methods
+----------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``msttr``            	  | Mean segmental TTR (Johnson 1944)						      |
@@ -260,8 +260,8 @@ Alternatively, just do
             -------
             float	
 
-Contributing
-------------
+5. Contributing
+---------------
 **Author**
 
 Lucas Shen
@@ -276,8 +276,8 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-License
--------
+6. License
+----------
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
