@@ -39,8 +39,7 @@ A small python module to compute textual lexical richness (aka lexical diversity
 
 Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
 
-.. image:: http://ForTheBadge.com/images/badges/made-with-python.svg
-   :target: https://www.python.org/
+
 
 1. Installation
 ---------------
@@ -168,8 +167,43 @@ Try the package on the cloud (without setting anything up on your local machine)
 	# Return Maas's lexical diversity measure.
 	>>> lex.Maas
 	0.023215679867353005
+	
+3. Use LexicalRichness in your own pipeline
+-------------------------------------------
+:code:`LexicalRichness` comes packaged with minimal preprocessing + tokenization for a quick start. 
 
-3. Attributes
+But for intermediate users, you likely have your preferred :code:`nlp_pipeline`:
+
+.. code-block:: python
+
+	# Your preferred preprocessing + tokenization pipeline
+	def nlp_pipeline(text):
+		...
+		return list_of_tokens
+
+Use :code:`LexicalRichness` with your own :code:`nlp_pipeline`:
+
+.. code-block:: python
+
+	# Initiate new LexicalRichness object with your preprocessing pipeline as input
+	lex = LexicalRichness(text, preprocesser=None, tokenizer=nlp_pipeline)
+
+	# Compute lexical richness
+	mtld = lex.mtld()
+Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`list_of_tokens` with :code:`preprocesser=None` and :code:`tokenizer=None`:
+	
+.. code-block:: python
+
+	# Preprocess the text
+	list_of_tokens = nlp_pipeline(text)
+	
+	# Initiate new LexicalRichness object with your list of tokens as input
+	lex = LexicalRichness(list_of_tokens, preprocesser=None, tokenizer=None)
+
+	# Compute lexical richness
+	mtld = lex.mtld()	
+
+4. Attributes
 -------------
 
 +-------------------------+-----------------------------------------------------------------------------------+
@@ -198,7 +232,7 @@ Try the package on the cloud (without setting anything up on your local machine)
 | ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) Maas (1972)                                     |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-4. Methods
+5. Methods
 ----------
 
 +-------------------------+-----------------------------------------------------------------------------------+
@@ -260,7 +294,7 @@ Alternatively, just do
             -------
             float	
 
-5. Contributing
+6. Contributing
 ---------------
 **Author**
 
@@ -276,7 +310,7 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-6. License
+7. License
 ----------
 
 The package is released under the `MIT
