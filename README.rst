@@ -4,9 +4,14 @@ LexicalRichness
 .. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
 .. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness.svg
-        :target: https://anaconda.org/conda-forge/lexicalrichness	
+        :target: https://anaconda.org/conda-forge/lexicalrichness
+.. image:: https://img.shields.io/conda/pn/conda-forge/lexicalrichness   
+	:target: https://anaconda.org/conda-forge/lexicalrichness
 .. image:: https://badgen.net/github/release/Naereen/Strapdown.js
         :target: https://github.com/LSYS/LexicalRichness.js/releases
+
+.. image:: https://github.com/LSYS/LexicalRichness/blob/housekeep/images/ghdocbadge.svg
+        :target: https://github.com/LSYS/LexicalRichness/blob/master/README.rst
 	
 .. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
         :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
@@ -34,11 +39,10 @@ A small python module to compute textual lexical richness (aka lexical diversity
 
 Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
 
-.. image:: http://ForTheBadge.com/images/badges/made-with-python.svg
-   :target: https://www.python.org/
 
-Installation
-------------
+
+1. Installation
+---------------
 **Install using PIP**
 
 .. code-block:: bash
@@ -93,8 +97,8 @@ Try the package on the cloud (without setting anything up on your local machine)
 .. |mybinder| image:: https://mybinder.org/badge_logo.svg
  :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
 
-Quickstart
-----------
+2. Quickstart
+-------------
 
 .. code-block:: python
 
@@ -163,9 +167,44 @@ Quickstart
 	# Return Maas's lexical diversity measure.
 	>>> lex.Maas
 	0.023215679867353005
+	
+3. Use LexicalRichness in your own pipeline
+-------------------------------------------
+:code:`LexicalRichness` comes packaged with minimal preprocessing + tokenization for a quick start. 
 
-Attributes and properties
-+++++++++++++++++++++++++
+But for intermediate users, you likely have your preferred :code:`nlp_pipeline`:
+
+.. code-block:: python
+
+	# Your preferred preprocessing + tokenization pipeline
+	def nlp_pipeline(text):
+		...
+		return list_of_tokens
+
+Use :code:`LexicalRichness` with your own :code:`nlp_pipeline`:
+
+.. code-block:: python
+
+	# Initiate new LexicalRichness object with your preprocessing pipeline as input
+	lex = LexicalRichness(text, preprocesser=None, tokenizer=nlp_pipeline)
+
+	# Compute lexical richness
+	mtld = lex.mtld()
+Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`list_of_tokens` with :code:`preprocesser=None` and :code:`tokenizer=None`:
+	
+.. code-block:: python
+
+	# Preprocess the text
+	list_of_tokens = nlp_pipeline(text)
+	
+	# Initiate new LexicalRichness object with your list of tokens as input
+	lex = LexicalRichness(list_of_tokens, preprocesser=None, tokenizer=None)
+
+	# Compute lexical richness
+	mtld = lex.mtld()	
+
+4. Attributes
+-------------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``wordlist``            | list of words                                                   		      |
@@ -193,8 +232,8 @@ Attributes and properties
 | ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) Maas (1972)                                     |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-Methods
-+++++++
+5. Methods
+----------
 
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``msttr``            	  | Mean segmental TTR (Johnson 1944)						      |
@@ -206,8 +245,8 @@ Methods
 | ``hdd``                 | HD-D (McCarthy and Jarvis 2007)                                                   |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-Assessing method docstrings
----------------------------
+**Assessing method docstrings**
+
 .. code-block:: python
 
 	>>> import inspect
@@ -255,14 +294,14 @@ Alternatively, just do
             -------
             float	
 
-Contributing
-------------
-Author
-++++++
+6. Contributing
+---------------
+**Author**
+
 Lucas Shen
 
-Contributors
-++++++++++++
+**Contributors**
+
 * `Christophe Bedetti <https://github.com/cbedetti>`__
 * `David Lesieur <https://github.com/davidlesieur>`__
 
@@ -271,8 +310,8 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-License
--------
+7. License
+----------
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
