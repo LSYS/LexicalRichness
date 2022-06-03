@@ -300,7 +300,7 @@ Alternatively, just do
 ---------------
 **Author**
 
-Lucas Shen
+`Lucas Shen <https://www.lucasshen.com/>`__
 
 **Contributors**
 
