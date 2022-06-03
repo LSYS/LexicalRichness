@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you found this software useful for your work, please cite it as below."
+message: "If found this software useful for your work, please cite it as below."
 preferred-citation:
   authors:
   - family-names: "Shen"
@@ -13,3 +13,5 @@ preferred-citation:
   - description: "This is from the archived snapshot of the code, supported by Zenodo."
     type: doi
     value: 10.5281/zenodo.6607008
+  doi: 10.5281/zenodo.6607008
+
