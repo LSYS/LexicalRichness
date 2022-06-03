@@ -192,6 +192,7 @@ Use :code:`LexicalRichness` with your own :code:`nlp_pipeline`:
 
 	# Compute lexical richness
 	mtld = lex.mtld()
+	
 Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`list_of_tokens` with :code:`preprocesser=None` and :code:`tokenizer=None`:
 	
 .. code-block:: python
