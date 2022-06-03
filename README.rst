@@ -310,8 +310,37 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-7. License
-----------
+7. Citing
+---------
+If you have used this codebase and wish to cite it, please cite as below:
+
+Codebase:
+
+.. code-block:: bib
+
+	@software{lex,
+	author = {Shen, Lucas},
+	doi = {10.5281/zenodo.6607008},
+	license = {MIT license},
+	title = {{LexicalRichness: A small module to compute textual lexical richness}},
+	url = {https://github.com/LSYS/lexicalrichness},
+	year = {2022}
+	}
+
+Documentation on formulations and algorithms:
+
+.. code-block:: bib
+
+	@techreport{accuracybias, 
+	title={Measuring Political Media Slant Using Text Data},
+	author={Shen, Lucas},
+	url={https://www.lucasshen.com/research/media.pdf}
+	}
+
+or 
+
+
+
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
