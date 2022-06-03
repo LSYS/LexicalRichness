@@ -34,7 +34,9 @@ LexicalRichness
 .. image:: https://mybinder.org/badge_logo.svg
         :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
 	
-	
+.. image:: https://zenodo.org/badge/132715931.svg
+   :target: https://zenodo.org/badge/latestdoi/132715931
+   
 A small python module to compute textual lexical richness (aka lexical diversity) measures.
 
 Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
