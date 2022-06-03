@@ -314,7 +314,7 @@ Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
 7. Citing
 ---------
-If you have used this codebase and wish to cite it, please cite as below:
+If you have used this codebase and wish to cite it, please cite as below.
 
 Codebase:
 
