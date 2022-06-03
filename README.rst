@@ -339,10 +339,6 @@ Documentation on formulations and algorithms:
 	url={https://www.lucasshen.com/research/media.pdf}
 	}
 
-or 
-
-
-
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
