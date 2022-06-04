@@ -32,6 +32,7 @@ setup(
     description="A small module to compute textual lexical richness (aka lexical diversity).",
     install_requires=requirements,
     license="MIT license",
+    long_description_content_type='text/x-rst',
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords=['lexical diversity', 'lexical richness', 'vocabulary diversity', 'lexical density', 'lexical'],
