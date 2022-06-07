@@ -3,8 +3,8 @@ LexicalRichness
 ===============
 .. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
-.. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness.svg
-        :target: https://anaconda.org/conda-forge/lexicalrichness
+.. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness   
+	:target: https://anaconda.org/conda-forge/lexicalrichness
 .. image:: https://img.shields.io/conda/pn/conda-forge/lexicalrichness   
 	:target: https://anaconda.org/conda-forge/lexicalrichness
 .. image:: https://badgen.net/github/release/Naereen/Strapdown.js
