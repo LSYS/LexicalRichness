@@ -1,39 +1,37 @@
 ===============
 LexicalRichness
 ===============
+.. Releases shields
 .. image:: https://badge.fury.io/py/lexicalrichness.svg
         :target: https://pypi.org/project/lexicalrichness/
 .. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness   
 	:target: https://anaconda.org/conda-forge/lexicalrichness
-.. image:: https://img.shields.io/conda/pn/conda-forge/lexicalrichness   
-	:target: https://anaconda.org/conda-forge/lexicalrichness
-.. image:: https://badgen.net/github/release/Naereen/Strapdown.js
-        :target: https://github.com/LSYS/LexicalRichness.js/releases
-
-.. image:: https://github.com/LSYS/LexicalRichness/blob/housekeep/images/ghdocbadge.svg
-        :target: https://github.com/LSYS/LexicalRichness/blob/master/README.rst
-	
+.. image:: https://img.shields.io/github/v/release/lsys/lexicalrichness   
+	:target: https://github.com/LSYS/LexicalRichness/releases
+.. Status
+.. image:: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml/badge.svg?branch=master   
+	:target: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml
+.. Python version
+.. image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
+	:target: https://img.shields.io/pypi/pyversions/lexicalrichness  
+.. Code quality	
 .. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
         :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
 .. image:: https://img.shields.io/lgtm/grade/python/g/LSYS/LexicalRichness.svg?logo=lgtm&logoWidth=18)
         :target: https://lgtm.com/projects/g/LSYS/LexicalRichness/context:python
-
-.. image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
-	:target: https://img.shields.io/pypi/pyversions/lexicalrichness  
+.. Maintenance
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
    :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
-
-.. |Maintenance yes| image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
-   :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
-	
-
+.. PRs welcomed
 .. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
         :target: http://makeapullrequest.com
+.. License	
 .. image:: https://img.shields.io/badge/License-MIT-blue.svg
         :target: https://lbesson.mit-license.org
+.. Cloud 	
 .. image:: https://mybinder.org/badge_logo.svg
-        :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
-	
+   :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
+.. Zenodo	
 .. image:: https://zenodo.org/badge/132715931.svg
    :target: https://zenodo.org/badge/latestdoi/132715931
    
@@ -41,8 +39,11 @@ A small python module to compute textual lexical richness (aka lexical diversity
 
 Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
 
-
-
+.. TOC
+.. contents:: **Table of Contents**
+   :depth: 1
+   :local:
+	
 1. Installation
 ---------------
 **Install using PIP**
@@ -96,8 +97,7 @@ Try the package on the cloud (without setting anything up on your local machine)
 
 |mybinder|
 
-.. |mybinder| image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
+
 
 2. Quickstart
 -------------
@@ -180,8 +180,8 @@ But for intermediate users, you likely have your preferred :code:`nlp_pipeline`:
 
 	# Your preferred preprocessing + tokenization pipeline
 	def nlp_pipeline(text):
-		...
-		return list_of_tokens
+	    ...
+	    return list_of_tokens
 
 Use :code:`LexicalRichness` with your own :code:`nlp_pipeline`:
 
@@ -205,8 +205,21 @@ Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`
 
 	# Compute lexical richness
 	mtld = lex.mtld()	
+	
+4. Using with Pandas
+--------------------
+Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` with a column containing text:
 
-4. Attributes
+.. code-block:: python
+
+	def mtld(text):
+	    lex = LexicalRichness(text)
+	    return lex.mtld()
+		
+	df['mtld'] = df['text'].apply(mtld)
+
+
+5. Attributes
 -------------
 
 +-------------------------+-----------------------------------------------------------------------------------+
@@ -235,7 +248,7 @@ Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`
 | ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) Maas (1972)                                     |
 +-------------------------+-----------------------------------------------------------------------------------+
 
-5. Methods
+6. Methods
 ----------
 
 +-------------------------+-----------------------------------------------------------------------------------+
@@ -297,7 +310,7 @@ Alternatively, just do
             -------
             float	
 
-6. Contributing
+7. Contributing
 ---------------
 **Author**
 
@@ -313,7 +326,7 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-7. Citing
+8. Citing
 ---------
 If you have used this codebase and wish to cite it, please cite as below.
 
@@ -343,3 +356,8 @@ Documentation on formulations and algorithms:
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
+
+.. macros
+.. |mybinder| image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
+
