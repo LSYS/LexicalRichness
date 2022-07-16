@@ -26,8 +26,8 @@ LexicalRichness
 .. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
         :target: http://makeapullrequest.com
 .. License	
-.. image:: https://img.shields.io/badge/License-MIT-blue.svg
-        :target: https://lbesson.mit-license.org
+.. image:: https://img.shields.io/github/license/LSYS/LexicalRichness?color=blue&label=License  
+	:target: https://github.com/LSYS/LexicalRichness/blob/master/LICENSE
 .. Cloud 	
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
