@@ -344,8 +344,8 @@ For now, refer to the study below for algorithmic details:
 
 **Contributors**
 
-* `Christophe Bedetti <https://github.com/cbedetti>`__
-* `David Lesieur <https://github.com/davidlesieur>`__
+.. image:: https://contrib.rocks/image?repo=lsys/lexicalrichness
+   :target: https://github.com/lsys/lexicalrichness/graphs/contributors
 
 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. 
 See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
