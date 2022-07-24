@@ -5,10 +5,22 @@ LexicalRichness
 |	|ci-status| |maintained| |PRs| |codefactor| |lgtm|
 |	|license| |mybinder| |zenodo|
    
-   
+.. _My target:
+
+Explicit targets
+~~~~~~~~~~~~~~~~
+
+Reference `My target`_.
+
+.. _target to paragraph:
+
+An easy way is just to use the final link of the page/section.
+This works, but it has :ref:`some disadvantages <target to paragraph>`:
+
+
 A small python module to compute textual lexical richness (aka lexical diversity) measures.
 
-Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007).
+Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007). See the `Example use cases <https://github.com/LSYS/LexicalRichness/tree/main#example-use-cases>`_.
 
 .. TOC
 .. contents:: **Table of Contents**
