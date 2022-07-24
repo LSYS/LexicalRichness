@@ -307,7 +307,7 @@ For now, refer to the study below for algorithmic details:
 	    
 8. Example use cases
 --------------------
-* `[1] <https://doi.org/10.1007/s10579-021-09562-4>`_ **SENTiVENT** used the metrics that LexicalRichness provides to estimate the classification difficulty of annotated categories in their corpus (Jacobs & Hoste 2020). The metrics show which categories will be more difficult for modeling approaches that rely on linguistic inputs because greater lexical diversity means greater data scarcity and more need for generalization (h/t Gilles Jacobs).
+* `[1] <https://doi.org/10.1007/s10579-021-09562-4>`_ **SENTiVENT** used the metrics that LexicalRichness provides to estimate the classification difficulty of annotated categories in their corpus (Jacobs & Hoste 2020). The metrics show which categories will be more difficult for modeling approaches that rely on linguistic inputs because greater lexical diversity means greater data scarcity and more need for generalization. (h/t Gilles Jacobs)
 
 	Jacobs, Gilles, and Véronique Hoste. "SENTiVENT: enabling supervised information extraction of company-specific events in economic and financial news." Language Resources and Evaluation (2021): 1-33.
 
