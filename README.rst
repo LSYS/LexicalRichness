@@ -4,19 +4,6 @@ LexicalRichness
 |	|pypi| |conda-forge| |latest-release| |python-ver| 
 |	|ci-status| |maintained| |PRs| |codefactor| |lgtm|
 |	|license| |mybinder| |zenodo|
-   
-.. _My target:
-
-Explicit targets
-~~~~~~~~~~~~~~~~
-
-Reference `My target`_.
-
-.. _target to paragraph:
-
-An easy way is just to use the final link of the page/section.
-This works, but it has :ref:`some disadvantages <target to paragraph>`:
-
 
 A small python module to compute textual lexical richness (aka lexical diversity) measures.
 
