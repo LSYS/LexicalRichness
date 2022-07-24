@@ -1,39 +1,10 @@
 ===============
 LexicalRichness
 ===============
-.. Releases shields
-.. image:: https://badge.fury.io/py/lexicalrichness.svg
-        :target: https://pypi.org/project/lexicalrichness/
-.. image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness   
-	:target: https://anaconda.org/conda-forge/lexicalrichness
-.. image:: https://img.shields.io/github/v/release/lsys/lexicalrichness   
-	:target: https://github.com/LSYS/LexicalRichness/releases
-.. Status
-.. image:: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml/badge.svg?branch=master   
-	:target: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml
-.. Python version
-.. image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
-	:target: https://img.shields.io/pypi/pyversions/lexicalrichness  
-.. Code quality	
-.. image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
-        :target: https://www.codefactor.io/repository/github/lsys/lexicalrichness  
-.. image:: https://img.shields.io/lgtm/grade/python/g/LSYS/LexicalRichness.svg?logo=lgtm&logoWidth=18)
-        :target: https://lgtm.com/projects/g/LSYS/LexicalRichness/context:python
-.. Maintenance
-.. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
-   :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity
-.. PRs welcomed
-.. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
-        :target: http://makeapullrequest.com
-.. License	
-.. image:: https://img.shields.io/github/license/LSYS/LexicalRichness?color=blue&label=License  
-	:target: https://github.com/LSYS/LexicalRichness/blob/master/LICENSE
-.. Cloud 	
-.. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
-.. Zenodo	
-.. image:: https://zenodo.org/badge/132715931.svg
-   :target: https://zenodo.org/badge/latestdoi/132715931
+|	|pypi| |conda-forge| |latest-release| |python-ver| 
+|	|ci-status| |maintained| |PRs| |codefactor| |lgtm|
+|	|license| |mybinder| |zenodo|
+   
    
 A small python module to compute textual lexical richness (aka lexical diversity) measures.
 
@@ -312,7 +283,6 @@ Alternatively, just do
 	    
 7. Formulation & Algorithmic Details
 ---------------------------------
-
 For now, refer to the study below for algorithmic details:
 
 	Shen, Lucas (2021). Measuring political media using text data.
@@ -335,8 +305,66 @@ For now, refer to the study below for algorithmic details:
 	.. raw:: html    
 
 	    
+8. Example use cases
+--------------------
+* `[1] <https://doi.org/10.1007/s10579-021-09562-4>`_ **SENTiVENT** used the metrics that LexicalRichness provides to estimate the classification difficulty of annotated categories in their corpus (Jacobs & Hoste 2020). The metrics show which categories will be more difficult for modeling approaches that rely on linguistic inputs because greater lexical diversity means greater data scarcity and more need for generalization (h/t Gilles Jacobs).
 
-7. Contributing
+	Jacobs, Gilles, and Véronique Hoste. "SENTiVENT: enabling supervised information extraction of company-specific events in economic and financial news." Language Resources and Evaluation (2021): 1-33.
+
+	.. raw:: html
+
+	   <details>
+	   <summary><a>Click here for citation metadata</a></summary>
+
+	.. code-block:: bib
+
+		@article{jacobs2021sentivent, 
+		title={SENTiVENT: enabling supervised information extraction of company-specific events in economic and financial news},
+		author={Jacobs, Gilles and Hoste, V{\'e}ronique},
+		journal={Language Resources and Evaluation},
+		pages={1--33},
+		year={2021},
+		publisher={Springer}
+		}
+	
+	.. raw:: html
+
+    
+* | `[2] <https://www.lucasshen.com/research/media.pdf>`_ **Measuring political media using text data.** This chapter of my thesis investigates whether political media bias manifests by coverage accuracy. As covaraites, I use characteristics of the text data (political speech and news article transcripts). One of the ways speeches can be characterized is via lexical richness.
+    
+	.. raw:: html
+
+	   <details>
+	   <summary><a>Shen, Lucas (2021). Measuring political media using text data [Click for metadata]</a></summary>
+
+	.. code-block:: bib
+
+		@techreport{accuracybias, 
+		title={Measuring Political Media Slant Using Text Data},
+		author={Shen, Lucas},
+		url={https://www.lucasshen.com/research/media.pdf}
+		}
+	
+	.. raw:: html    	    
+	
+* `[3] <https://github.com/notnews/unreadable_news>`_ **Unreadable News: How Readable is American News?** This study characterizes modern news by readability and lexical richness. Focusing on the NYT, they find increasing readability and lexical richness, suggesting that NYT feels competition from alternative sources to be accessible while maintaining its key demographic of college-educated Americans. 
+   
+	.. raw:: html
+
+	   <details>
+	   <summary><a>NYT's lexical superiority?</a></summary>
+		
+		<p align="left">
+			<img width="45%" src="images/boxplot_lex_nyt_cnn_npr_msnbc.png">
+			<br>
+			Source: <a href="https://github.com/notnews/unreadable_news">(https://github.com/notnews/unreadable_news)</a>
+		</p>
+	   
+	
+	.. raw:: html    
+	
+	    
+9. Contributing
 ---------------
 **Author**
 
@@ -352,17 +380,17 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
-8. Citing
----------
+10. Citing
+----------
 If you have used this codebase and wish to cite it, please cite as below.
 
 Codebase:
 
 .. code-block:: bib
 
-	@software{lex,
+	@misc{lex,
 	author = {Shen, Lucas},
-	doi = {10.5281/zenodo.6607008},
+	doi = {10.5281/zenodo.6607007},
 	license = {MIT license},
 	title = {{LexicalRichness: A small module to compute textual lexical richness}},
 	url = {https://github.com/LSYS/lexicalrichness},
@@ -373,7 +401,7 @@ Documentation on formulations and algorithms:
 
 .. code-block:: bib
 
-	@techreport{accuracybias, 
+	@misc{accuracybias, 
 	title={Measuring Political Media Slant Using Text Data},
 	author={Shen, Lucas},
 	url={https://www.lucasshen.com/research/media.pdf}
@@ -383,7 +411,30 @@ Documentation on formulations and algorithms:
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
 
-.. macros
+.. macros -------------------------------------------------------------------------------------------------------
+.. badges
+.. |pypi| image:: https://badge.fury.io/py/lexicalrichness.svg
+	:target: https://pypi.org/project/lexicalrichness/
+.. |conda-forge| image:: https://img.shields.io/conda/vn/conda-forge/lexicalrichness   
+	:target: https://anaconda.org/conda-forge/lexicalrichness
+.. |latest-release| image:: https://img.shields.io/github/v/release/lsys/lexicalrichness   
+	:target: https://github.com/LSYS/LexicalRichness/releases
+.. |ci-status| image:: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml/badge.svg?branch=master   
+	:target: https://github.com/LSYS/LexicalRichness/actions/workflows/build.yml
+.. |python-ver| image:: https://img.shields.io/pypi/pyversions/lexicalrichness   
+	:target: https://img.shields.io/pypi/pyversions/lexicalrichness
+.. |codefactor| image:: https://www.codefactor.io/repository/github/lsys/lexicalrichness/badge
+	:target: https://www.codefactor.io/repository/github/lsys/lexicalrichness     
+.. |lgtm| image:: https://img.shields.io/lgtm/grade/python/g/LSYS/LexicalRichness.svg?logo=lgtm&logoWidth=18)
+	:target: https://lgtm.com/projects/g/LSYS/LexicalRichness/context:python   
+.. |maintained| image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
+   :target: https://GitHub.com/Naereen/StrapDown.js/graphs/commit-   
+.. |PRs| image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
+	:target: http://makeapullrequest.com   
+.. |license| image:: https://img.shields.io/github/license/LSYS/LexicalRichness?color=blue&label=License  
+	:target: https://github.com/LSYS/LexicalRichness/blob/master/LICENSE   
 .. |mybinder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb
-
+   :target: https://mybinder.org/v2/gh/LSYS/lexicaldiversity-example/main?labpath=example.ipynb	
+.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6607007.svg
+   :target: https://doi.org/10.5281/zenodo.6607007
+		
