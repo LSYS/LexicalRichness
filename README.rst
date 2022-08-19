@@ -355,7 +355,7 @@ For now, refer to the study below for algorithmic details:
 	   <summary><a>NYT's lexical superiority?</a></summary>
 		
 		<p align="left">
-			<img width="45%" src="https://raw.githubusercontent.com/lsys/lexicalrichness/master/images/boxplot_lex_nyt_cnn_npr_msnbc.png">
+			<img width="45%" src="https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/images/boxplot_lex_nyt_cnn_npr_msnbc.png">
 			<br>
 			Source: <a href="https://github.com/notnews/unreadable_news">(https://github.com/notnews/unreadable_news)</a>
 		</p>
