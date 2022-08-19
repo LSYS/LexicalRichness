@@ -5,9 +5,9 @@ LexicalRichness
 |	|ci-status| |maintained| |PRs| |codefactor| |lgtm|
 |	|license| |mybinder| |zenodo|
 
-A small python module to compute textual lexical richness (aka lexical diversity) measures.
+`LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
 
-Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007). See the `Example use cases <https://github.com/LSYS/LexicalRichness#id1>`_.
+Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007). 
 
 .. TOC
 .. contents:: **Table of Contents**
@@ -281,7 +281,7 @@ Alternatively, just do
             float	
 	    
 7. Formulation & Algorithmic Details
----------------------------------
+------------------------------------
 For now, refer to the study below for algorithmic details:
 
 	Shen, Lucas (2021). Measuring political media using text data.
@@ -354,7 +354,7 @@ For now, refer to the study below for algorithmic details:
 	   <summary><a>NYT's lexical superiority?</a></summary>
 		
 		<p align="left">
-			<img width="45%" src="images/boxplot_lex_nyt_cnn_npr_msnbc.png">
+			<img width="45%" src="https://raw.githubusercontent.com/lsys/lexicalrichness/master/images/boxplot_lex_nyt_cnn_npr_msnbc.png">
 			<br>
 			Source: <a href="https://github.com/notnews/unreadable_news">(https://github.com/notnews/unreadable_news)</a>
 		</p>
