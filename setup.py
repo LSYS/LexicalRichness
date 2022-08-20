@@ -33,12 +33,12 @@ setup(
     install_requires=requirements,
     license="MIT license",
     long_description_content_type='text/x-rst',
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     include_package_data=True,
     keywords=['lexical diversity', 'lexical richness', 'vocabulary diversity', 'lexical density', 'lexical'],
     name='lexicalrichness',
     packages=find_packages(include=['lexicalrichness']),
     url='https://github.com/LSYS/lexicalrichness',
-    download_url='https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.1.9.tar.gz',
-    version='0.1.10'
+    download_url='https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.2.0.tar.gz',
+    version='0.2.0'
 )
