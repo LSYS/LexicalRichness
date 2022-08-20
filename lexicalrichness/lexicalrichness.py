@@ -181,6 +181,7 @@ class LexicalRichness(object):
         if self.tokenizer:
             self.wordlist = self.tokenizer(text)
         else:
+            assert type(text)==list, "If tokenizer is None, then input should be a list of words."
             self.wordlist = text
 
         self.words = len(self.wordlist)
