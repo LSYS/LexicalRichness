@@ -5,10 +5,12 @@
 
 
 import unittest
-
-# from lexicalrichness import lexicalrichness
-from lexicalrichness.lexicalrichness import *
-# import textblob
+from lexicalrichness.lexicalrichness import LexicalRichness
+from lexicalrichness.lexicalrichness import preprocess
+from lexicalrichness.lexicalrichness import tokenize
+from lexicalrichness.lexicalrichness import list_sliding_window
+from lexicalrichness.lexicalrichness import segment_generator
+import pytest
 
 
 class TestLexicalrichness(unittest.TestCase):
@@ -45,13 +47,13 @@ class TestLexicalrichness(unittest.TestCase):
         self.assertIs(type(tokenize(self.s3)), list)
         self.assertIs(type(tokenize(self.emptystring)), list)
 
-    # def test_blobber(self):
-    #     print('testing blobber')
 
-    #     self.assertIs(type(blobber(self.s1)), textblob.blob.WordList)
-    #     self.assertIs(type(blobber(self.s2)), textblob.blob.WordList)
-    #     self.assertIs(type(blobber(self.s3)), textblob.blob.WordList)
-    #     self.assertIs(type(blobber(self.emptystring)), textblob.blob.WordList)
+    def test_tokenize_str_error(self):
+        """Ensures error is raised if tokenizer is set to None and input is a string."""
+        with pytest.raises(AssertionError) as err:
+            LexicalRichness(self.s1, tokenizer=None)
+        assert str(err.value) == "If tokenizer is None, then input should be a list of words."
+
 
     def test_list_sliding_window(self):
         print('testing list_sliding_window')
