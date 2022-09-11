@@ -2,9 +2,9 @@ name: build
 
 on:
   push:
-    branches: [ "master", "debug", "housekeep" ]
+    branches: [ "master", "debug", "housekeep", "patch" ]
   pull_request:
-    branches: [ "master", "debug", "housekeep" ]
+    branches: [ "master", "debug", "housekeep", "patch" ]
 
 jobs:
   build:
