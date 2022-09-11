@@ -3,6 +3,7 @@
 from __future__ import division
 
 import sys
+
 if sys.version_info[0] == 3:
     from statistics import mean
 
@@ -11,13 +12,17 @@ from itertools import islice
 import re
 import string
 from math import sqrt, log
+import numpy as np
 from scipy.stats import hypergeom
+from scipy.optimize import curve_fit
+import random
 
 try:
     from textblob import TextBlob
 except ImportError:
     pass
 else:
+
     def blobber(text):
         """ Tokenize text into a list of tokens using TextBlob.
 
@@ -47,15 +52,15 @@ def preprocess(text):
         string
     """
     # lowercase and remove digits
-    text = re.sub(r'[0-9]+', '', text.lower())
+    text = re.sub(r"[0-9]+", "", text.lower())
 
     # Replace dashes/hyphens
     if sys.version_info[0] == 3:
-        text = text.replace('–', '')
-        text = text.replace('—', '')
-        text = text.replace('-', '')
+        text = text.replace("–", "")
+        text = text.replace("—", "")
+        text = text.replace("-", "")
     else:
-        text = text.replace('-', '')
+        text = text.replace("-", "")
     return text
 
 
@@ -73,7 +78,7 @@ def tokenize(text):
     text = preprocess(text)
 
     for p in list(string.punctuation):
-        text = text.replace(p, ' ')
+        text = text.replace(p, " ")
 
     words = text.split()
     return words
@@ -94,7 +99,7 @@ def segment_generator(List, segment_size):
         Generator
     """
     for i in range(0, len(List), segment_size):
-        yield List[i: i + segment_size]
+        yield List[i : i + segment_size]
 
 
 def list_sliding_window(sequence, window_size=2):
@@ -180,12 +185,13 @@ class LexicalRichness(object):
                 text = self.preprocessor(text)
             self.wordlist = self.tokenizer(text)
         else:
-            assert type(text)==list, "If tokenizer is None, then input should be a list of words."
+            assert (
+                type(text) == list
+            ), "If tokenizer is None, then input should be a list of words."
             self.wordlist = text
 
         self.words = len(self.wordlist)
         self.terms = len(set(self.wordlist))
-
 
     # Lexical richness measures
     @property
@@ -196,7 +202,6 @@ class LexicalRichness(object):
         """
         return self.terms / self.words
 
-
     @property
     def rttr(self):
         """ Root TTR (RTTR) computed as t/sqrt(w), where t is the number of unique terms/vocab,
@@ -206,7 +211,6 @@ class LexicalRichness(object):
         """
         return self.terms / sqrt(self.words)
 
-
     @property
     def cttr(self):
         """ Corrected TTR (CTTR) computed as t/sqrt(2 * w), where t is the number of unique terms/vocab,
@@ -214,7 +218,6 @@ class LexicalRichness(object):
             (Carrol 1964)
         """
         return self.terms / sqrt(2 * self.words)
-
 
     @property
     def Herdan(self):
@@ -225,7 +228,6 @@ class LexicalRichness(object):
         """
         return log(self.terms) / log(self.words)
 
-
     @property
     def Summer(self):
         """ Computed as log(log(t)) / log(log(w)), where t is the number of unique terms/vocab, and
@@ -233,7 +235,6 @@ class LexicalRichness(object):
             (Summer 1966)
         """
         return log(log(self.terms)) / log(log(self.words))
-
 
     @property
     def Dugast(self):
@@ -243,10 +244,9 @@ class LexicalRichness(object):
         """
         # raise exception if terms and words count are the same
         if self.words == self.terms:
-            raise ZeroDivisionError('Word count and term counts are the same.')
+            raise ZeroDivisionError("Word count and term counts are the same.")
 
         return (log(self.words) ** 2) / (log(self.words) - log(self.terms))
-
 
     @property
     def Maas(self):
@@ -256,7 +256,6 @@ class LexicalRichness(object):
             (Maas 1972)
         """
         return (log(self.words) - log(self.terms)) / (log(self.words) ** 2)
-
 
     def msttr(self, segment_window=100, discard=True):
         """ Mean segmental TTR (MSTTR) computed as average of TTR scores for segments in a text.
@@ -283,17 +282,21 @@ class LexicalRichness(object):
             float
         """
         if segment_window >= self.words:
-            raise ValueError('Window size must be greater than text size of {}. Try a smaller segment_window size.'.format(self.words))
+            raise ValueError(
+                "Window size must be greater than text size of {}. Try a smaller segment_window size.".format(
+                    self.words
+                )
+            )
 
         if segment_window < 1 or type(segment_window) is float:
-            raise ValueError('Window size must be a positive integer.')
+            raise ValueError("Window size must be a positive integer.")
 
         scores = list()
         for segment in segment_generator(self.wordlist, segment_window):
             ttr = len(set(segment)) / len(segment)
             scores.append(ttr)
 
-        if discard: # discard remaining words
+        if discard:  # discard remaining words
             del scores[-1]
 
         if sys.version_info == 3:
@@ -301,7 +304,6 @@ class LexicalRichness(object):
         else:
             mean_ttr = sum(scores) / len(scores)
         return mean_ttr
-
 
     def mattr(self, window_size=100):
         """ Moving average TTR (MATTR) computed using the average of TTRs over successive segments
@@ -326,21 +328,26 @@ class LexicalRichness(object):
             float
         """
         if window_size > self.words:
-            raise ValueError('Window size must not be greater than text size of {}. Try a smaller window size.'.format(self.words))
+            raise ValueError(
+                "Window size must not be greater than text size of {}. Try a smaller window size.".format(
+                    self.words
+                )
+            )
 
         if window_size < 1 or type(window_size) is float:
-            raise ValueError('Window size must be a positive integer.')
+            raise ValueError("Window size must be a positive integer.")
 
-        scores = [len(set(window)) / window_size
-                  for window in list_sliding_window(self.wordlist, window_size)]
+        scores = [
+            len(set(window)) / window_size
+            for window in list_sliding_window(self.wordlist, window_size)
+        ]
 
         if sys.version_info == 3:
             mattr = mean(scores)
         else:
-            mattr = sum(scores)/len(scores)
+            mattr = sum(scores) / len(scores)
 
         return mattr
-
 
     def mtld(self, threshold=0.72):
         """ Measure of textual lexical diversity, computed as the mean length of sequential words in
@@ -387,7 +394,7 @@ class LexicalRichness(object):
             for word in word_iterator:
                 word_counter += 1
                 terms.add(word)
-                ttr = len(terms)/word_counter
+                ttr = len(terms) / word_counter
 
                 if ttr <= threshold:
                     word_counter = 0
@@ -397,7 +404,7 @@ class LexicalRichness(object):
             # partial factors for the last segment computed as the ratio of how far away ttr is from
             # unit, to how far away threshold is to unit
             if word_counter > 0:
-                factor_count += (1-ttr) / (1 - threshold)
+                factor_count += (1 - ttr) / (1 - threshold)
 
             # ttr never drops below threshold by end of text
             if factor_count == 0:
@@ -405,7 +412,7 @@ class LexicalRichness(object):
                 if ttr == 1:
                     factor_count += 1
                 else:
-                    factor_count += (1-ttr) / (1 - threshold)
+                    factor_count += (1 - ttr) / (1 - threshold)
 
             return len(self.wordlist) / factor_count
 
@@ -418,7 +425,6 @@ class LexicalRichness(object):
             mtld = (forward_measure + reverse_measure) / 2
 
         return mtld
-
 
     def hdd(self, draws=42):
         """ Hypergeometric distribution diversity (HD-D) score.
@@ -443,23 +449,36 @@ class LexicalRichness(object):
         else:
             suggestion = 42
         if self.words < draws:
-            raise ValueError('Number of draws should be less than the total sample size of {0}. Try a draw value smaller than {0}, e.g. hdd(draws={1}.)'.format(self.words, suggestion))
+            raise ValueError(
+                "Number of draws should be less than the total sample size of {0}. Try a draw value smaller than {0}, e.g. hdd(draws={1}.)".format(
+                    self.words, suggestion
+                )
+            )
         if draws < 1 or type(draws) is float:
-            raise ValueError('Number of draws must be a positive integer. E.g. hdd(draws={})'.format(suggestion))
+            raise ValueError(
+                "Number of draws must be a positive integer. E.g. hdd(draws={})".format(
+                    suggestion
+                )
+            )
 
         term_freq = Counter(self.wordlist)
 
-        term_contributions = [(1 - hypergeom.pmf(0, self.words, freq, draws)) / draws
-                              for term, freq in term_freq.items()]
+        term_contributions = [
+            (1 - hypergeom.pmf(0, self.words, freq, draws)) / draws
+            for term, freq in term_freq.items()
+        ]
 
         return sum(term_contributions)
 
-
     def __str__(self):
-        return ' '.join(self.wordlist)
-
+        return " ".join(self.wordlist)
 
     def __repr__(self):
         return 'LexicalRichness(words={}, terms={}, preprocessor={}, tokenizer={}, wordlist={}, string="{}")'.format(
-            self.words, self.terms, self.preprocessor, self.tokenizer, self.wordlist, ' '.join(self.wordlist)
+            self.words,
+            self.terms,
+            self.preprocessor,
+            self.tokenizer,
+            self.wordlist,
+            " ".join(self.wordlist),
         )

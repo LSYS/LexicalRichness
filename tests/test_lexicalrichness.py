@@ -70,7 +70,10 @@ class TestLexicalrichness(unittest.TestCase):
         """Ensures error is raised if tokenizer is set to None and input is a string."""
         with pytest.raises(AssertionError) as err:
             LexicalRichness(self.s1, tokenizer=None)
-        assert str(err.value) == "If tokenizer is None, then input should be a list of words."
+        assert (
+            str(err.value)
+            == "If tokenizer is None, then input should be a list of words."
+        )
 
     def test_list_sliding_window(self):
         print("testing list_sliding_window")
@@ -78,15 +81,20 @@ class TestLexicalrichness(unittest.TestCase):
         test_list = ["a", "b", "c", "d"]
 
         self.assertEqual(
-            list(list_sliding_window(test_list, 1)), [("a",), ("b",), ("c",), ("d",)]
+            list(list_sliding_window(test_list, 1)),
+            [("a",), ("b",), ("c",), ("d",)],
         )
         self.assertEqual(
-            list(list_sliding_window(test_list, 2)), [("a", "b"), ("b", "c"), ("c", "d")]
+            list(list_sliding_window(test_list, 2)),
+            [("a", "b"), ("b", "c"), ("c", "d")],
         )
         self.assertEqual(
-            list(list_sliding_window(test_list, 3)), [("a", "b", "c"), ("b", "c", "d")]
+            list(list_sliding_window(test_list, 3)),
+            [("a", "b", "c"), ("b", "c", "d")],
         )
-        self.assertEqual(list(list_sliding_window(test_list, 4)), [("a", "b", "c", "d")])
+        self.assertEqual(
+            list(list_sliding_window(test_list, 4)), [("a", "b", "c", "d")]
+        )
 
     def test_segment_generator(self):
         print("testing segment_generator")
@@ -94,20 +102,24 @@ class TestLexicalrichness(unittest.TestCase):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
         self.assertEqual(
-            list(segment_generator(test_list, 3)), [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+            list(segment_generator(test_list, 3)),
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]],
         )
         self.assertEqual(
-            list(segment_generator(test_list, 5)), [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]
+            list(segment_generator(test_list, 5)),
+            [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]],
         )
         self.assertEqual(
             list(segment_generator(test_list, 1)),
             [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]],
         )
         self.assertEqual(
-            list(segment_generator(test_list, 10)), [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+            list(segment_generator(test_list, 10)),
+            [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
         )
         self.assertEqual(
-            list(segment_generator(test_list, 11)), [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+            list(segment_generator(test_list, 11)),
+            [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
         )
 
     def test_words(self):
@@ -166,7 +178,9 @@ class TestLexicalrichness(unittest.TestCase):
 
         self.assertEqual(self.obj1.mattr(window_size=5), 0.9)
         self.assertEqual(self.obj1.mattr(window_size=1), 1)
-        self.assertEqual(self.obj1.mattr(window_size=self.obj1.words), self.obj1.ttr)
+        self.assertEqual(
+            self.obj1.mattr(window_size=self.obj1.words), self.obj1.ttr
+        )
 
         with self.assertRaises(ValueError):
             self.obj1.mattr(window_size=0)
