@@ -441,3 +441,8 @@ License <https://opensource.org/licenses/MIT>`__.
 .. |rtfd| image:: https://readthedocs.org/projects/lexicalrichness/badge/?version=latest
     :target: https://lexicalrichness.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+
+
+.. image:: https://badges.gitter.im/LSYS/lexicalrichness.svg
+   :alt: Join the chat at https://gitter.im/LSYS/lexicalrichness
+   :target: https://gitter.im/LSYS/lexicalrichness?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
