@@ -362,7 +362,26 @@ For now, refer to the study below for algorithmic details:
 	   
 	
 	.. raw:: html    
+
+* | `[4] <http://www.personal.psu.edu/xxl13/teaching/su09/archive/lexical.pdf>`_ **The Relationship of Lexical Richness to the Quality of ESL Learners' Oral Narratives** This large-scale investigation yielded a number of substantive findings with important implications for second language teaching, learning, and research. It provides evidence for the relationship between lexical variation and the quality of test taker’s oral productions claimed in the rating scale of TEM-4 spoken test
+
+    
+	.. raw:: html
+
+	   <details>
+	   <summary><a>Xiaofei Lu (2012)  A computational system is designed to automate the measurement of three dimensions of lexical richness,using twenty-five 		different metrics and determine the relationship.[Click for metadata]</a></summary>
+
+	.. code-block:: bib
+
+		@article{XiaofeiLu2012quality}
+		title={The Relationship of Lexical Richness to the Quality of ESL Learners' Oral Narratives},
+		author={XIAOFEI LU},
+		journal={The Modern Language Journal},
+		pages={190--208},
+		year={2012},
+		publisher={Wiley}
 	
+	.. raw:: html   
 	    
 9. Contributing
 ---------------
