@@ -8,7 +8,7 @@ LexicalRichness
 
 `LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
 
-Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer (McCarthy and Jarvis 2007). Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge (Šišková 2012), speaker competence, and socioeconomic status (McCarthy and Jarvis 2007). 
+Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer `(McCarthy and Jarvis 2007) <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1028.8657&rep=rep1&type=pdf>`_ . Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge `(Šišková 2012) <https://www.researchgate.net/publication/305999633_Lexical_Richness_in_EFL_Students'_Narratives>`_ , speaker competence, and socioeconomic status `(McCarthy and Jarvis 2007) <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1028.8657&rep=rep1&type=pdf>`_. 
 
 .. TOC
 .. contents:: **Table of Contents**
