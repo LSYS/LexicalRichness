@@ -483,7 +483,6 @@ class LexicalRichness(object):
 
         return sum(term_contributions)
 
-
     def __str__(self):
         return " ".join(self.wordlist)
 
