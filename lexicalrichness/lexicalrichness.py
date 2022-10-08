@@ -24,32 +24,32 @@ except ImportError:
 else:
 
     def blobber(text):
-        """ Tokenize text into a list of tokens using TextBlob.
+        """Tokenize text into a list of tokens using TextBlob.
 
-            Parameter
-            ---------
-            text: string
+        Parameter
+        ---------
+        text: string
 
-            Return
-            ------
-            TextBlob list of words
+        Return
+        ------
+        TextBlob list of words
         """
         blob = TextBlob(text)
         return blob.words
 
 
 def preprocess(text):
-    """ 1. lower case
-        2. removes digits
-        3. removes variations of dashes and hyphens
+    """1. lower case
+    2. removes digits
+    3. removes variations of dashes and hyphens
 
-        Parameter
-        ---------
-        text: string
+    Parameter
+    ---------
+    text: string
 
-        Returns
-        -------
-        string
+    Returns
+    -------
+    string
     """
     # lowercase and remove digits
     text = re.sub(r"[0-9]+", "", text.lower())
@@ -65,16 +65,16 @@ def preprocess(text):
 
 
 def tokenize(text):
-    """ Tokenize text into a list of tokens using built-in methods.
+    """Tokenize text into a list of tokens using built-in methods.
 
-        Parameter
-        ---------
-        text: string
+    Parameter
+    ---------
+    text: string
 
-        Returns
-        -------
-        list
-        """
+    Returns
+    -------
+    list
+    """
     text = preprocess(text)
 
     for p in list(string.punctuation):
@@ -85,45 +85,45 @@ def tokenize(text):
 
 
 def segment_generator(List, segment_size):
-    """ Split a list into s segments of size r (segment_size).
+    """Split a list into s segments of size r (segment_size).
 
-        Parameters
-        ----------
-        List: list
-            List of items to be segmented.
-        segment_size: int
-            Size of each segment.
+    Parameters
+    ----------
+    List: list
+        List of items to be segmented.
+    segment_size: int
+        Size of each segment.
 
-        Returns
-        -------
-        Generator
+    Returns
+    -------
+    Generator
     """
     for i in range(0, len(List), segment_size):
         yield List[i : i + segment_size]
 
 
 def list_sliding_window(sequence, window_size=2):
-    """ Returns a sliding window generator (of size window_size) over a sequence. Taken from
-        https://docs.python.org/release/2.3.5/lib/itertools-example.html
+    """Returns a sliding window generator (of size window_size) over a sequence. Taken from
+    https://docs.python.org/release/2.3.5/lib/itertools-example.html
 
-        Example
-        -------
-        List = ['a', 'b', 'c', 'd']
-        window_size = 2
-        list_sliding_window(List, 2) -> ('a', 'b')
-                                        ('b', 'c')
-                                        ('c', 'd')
+    Example
+    -------
+    List = ['a', 'b', 'c', 'd']
+    window_size = 2
+    list_sliding_window(List, 2) -> ('a', 'b')
+                                    ('b', 'c')
+                                    ('c', 'd')
 
-        Parameters
-        ----------
-        sequence: sequence (string, unicode, list, tuple, etc.)
-            Sequence to be iterated over. window_size=1 is just a regular iterator.
-        window_size: int
-            Size of each window.
+    Parameters
+    ----------
+    sequence: sequence (string, unicode, list, tuple, etc.)
+        Sequence to be iterated over. window_size=1 is just a regular iterator.
+    window_size: int
+        Size of each window.
 
-        Returns
-        -------
-        Generator
+    Returns
+    -------
+    Generator
 
     """
     iterable = iter(sequence)
@@ -135,47 +135,59 @@ def list_sliding_window(sequence, window_size=2):
         yield result
 
 
+def ttr_nd(N, D):
+    """McKee, Mavern, and Richard 2000's formulation of how the type token ratio (TTR) depends
+    on the number of tokens (N) and a parameter D (a construct of the unobserved lexical diversity).
+    Predicted values of D is in the order of 10 to 100.
+
+    Directly referenced from McKee, Mavern, and Richard 2000.
+
+    Used to compute vocd(self, ntokens=50, within_sample=100, iterations=3, seed=42).
+    """
+    return (D / N) * (np.sqrt(1 + 2 * (N / D)) - 1)
+
+
 class LexicalRichness(object):
-    """ Object containing tokenized text and methods to compute Lexical Richness (also known as
-        Lexical Diversity or Vocabulary Diversity.)
+    """Object containing tokenized text and methods to compute Lexical Richness (also known as
+    Lexical Diversity or Vocabulary Diversity.)
     """
 
     def __init__(self, text, preprocessor=preprocess, tokenizer=tokenize):
-        """ Initialise object with basic attributes needed to compute the common lexical diversity measures.
+        """Initialise object with basic attributes needed to compute the common lexical diversity measures.
 
-            Parameters
-            ----------
-            text: string or list
-                String (or unicode) variable containing textual data, or a list
-                of tokens if the text is already tokenized.
-            preprocessor: callable or None
-                A callable for preprocessing the text. Default is the built-in
-                `preprocess` function. If None, no preprocessing is applied.
-            tokenizer: callable or None
-                A callable for tokenizing the text. Default is the built-in
-                `tokenize` function. If None, the text parameter should be a list.
+        Parameters
+        ----------
+        text: string or list
+            String (or unicode) variable containing textual data, or a list
+            of tokens if the text is already tokenized.
+        preprocessor: callable or None
+            A callable for preprocessing the text. Default is the built-in
+            `preprocess` function. If None, no preprocessing is applied.
+        tokenizer: callable or None
+            A callable for tokenizing the text. Default is the built-in
+            `tokenize` function. If None, the text parameter should be a list.
 
-            Attributes
-            ----------
-            wordlist: list
-                List of tokens from text.
-            words: int
-                Number of words in text.
-            terms: int
-                Number of unique terms/vocabb in text.
-            preprocessor: callable
-                The preprocessor used.
-            tokenizer: callable
-                The tokenizer used.
+        Attributes
+        ----------
+        wordlist: list
+            List of tokens from text.
+        words: int
+            Number of words in text.
+        terms: int
+            Number of unique terms/vocabb in text.
+        preprocessor: callable
+            The preprocessor used.
+        tokenizer: callable
+            The tokenizer used.
 
-            Helpers Functions
-            -----------------
-            preprocess(string):
-                Preprocess text before tokenizing (if preprocessor=preprocess)
-            blobber(string)
-                Tokenize text using TextBlob (if tokenizer=blobber)
-            tokenize(string)
-                Tokenize text using built-in string methods (if tokenizer=tokenize)
+        Helpers Functions
+        -----------------
+        preprocess(string):
+            Preprocess text before tokenizing (if preprocessor=preprocess)
+        blobber(string)
+            Tokenize text using TextBlob (if tokenizer=blobber)
+        tokenize(string)
+            Tokenize text using built-in string methods (if tokenizer=tokenize)
         """
         self.preprocessor = preprocessor
         self.tokenizer = tokenizer
@@ -193,54 +205,54 @@ class LexicalRichness(object):
         self.words = len(self.wordlist)
         self.terms = len(set(self.wordlist))
 
-    # Lexical richness measures
+    # Lexical richness measures as properties
     @property
     def ttr(self):
-        """ Type-token ratio (TTR) computed as t/w, where t is the number of unique terms/vocab,
-            and w is the total number of words.
-            (Chotlos 1944, Templin 1957)
+        """Type-token ratio (TTR) computed as t/w, where t is the number of unique terms/vocab,
+        and w is the total number of words.
+        (Chotlos 1944, Templin 1957)
         """
         return self.terms / self.words
 
     @property
     def rttr(self):
-        """ Root TTR (RTTR) computed as t/sqrt(w), where t is the number of unique terms/vocab,
-            and w is the total number of words.
-            Also known as Guiraud's R and Guiraud's index.
-            (Guiraud 1954, 1960)
+        """Root TTR (RTTR) computed as t/sqrt(w), where t is the number of unique terms/vocab,
+        and w is the total number of words.
+        Also known as Guiraud's R and Guiraud's index.
+        (Guiraud 1954, 1960)
         """
         return self.terms / sqrt(self.words)
 
     @property
     def cttr(self):
-        """ Corrected TTR (CTTR) computed as t/sqrt(2 * w), where t is the number of unique terms/vocab,
-            and w is the total number of words.
-            (Carrol 1964)
+        """Corrected TTR (CTTR) computed as t/sqrt(2 * w), where t is the number of unique terms/vocab,
+        and w is the total number of words.
+        (Carrol 1964)
         """
         return self.terms / sqrt(2 * self.words)
 
     @property
     def Herdan(self):
-        """ Computed as log(t)/log(w), where t is the number of unique terms/vocab, and w is the
-            total number of words.
-            Also known as Herdan's C.
-            (Herdan 1960, 1964)
+        """Computed as log(t)/log(w), where t is the number of unique terms/vocab, and w is the
+        total number of words.
+        Also known as Herdan's C.
+        (Herdan 1960, 1964)
         """
         return log(self.terms) / log(self.words)
 
     @property
     def Summer(self):
-        """ Computed as log(log(t)) / log(log(w)), where t is the number of unique terms/vocab, and
-            w is the total number of words.
-            (Summer 1966)
+        """Computed as log(log(t)) / log(log(w)), where t is the number of unique terms/vocab, and
+        w is the total number of words.
+        (Summer 1966)
         """
         return log(log(self.terms)) / log(log(self.words))
 
     @property
     def Dugast(self):
-        """ Computed as (log(w) ** 2) / (log(w) - log(t)), where t is the number of unique terms/vocab,
-            and w is the total number of words.
-            (Dugast 1978)
+        """Computed as (log(w) ** 2) / (log(w) - log(t)), where t is the number of unique terms/vocab,
+        and w is the total number of words.
+        (Dugast 1978)
         """
         # raise exception if terms and words count are the same
         if self.words == self.terms:
@@ -250,36 +262,37 @@ class LexicalRichness(object):
 
     @property
     def Maas(self):
-        """ Maas's TTR, computed as (log(w) - log(t)) / (log(w) * log(w)), where t is the number of
-            unique terms/vocab, and w is the total number of words. Unlike the other measures, lower
-            maas measure indicates higher lexical richness.
-            (Maas 1972)
+        """Maas's TTR, computed as (log(w) - log(t)) / (log(w) * log(w)), where t is the number of
+        unique terms/vocab, and w is the total number of words. Unlike the other measures, lower
+        maas measure indicates higher lexical richness.
+        (Maas 1972)
         """
         return (log(self.words) - log(self.terms)) / (log(self.words) ** 2)
 
+    # Lexical richness measures as methods
     def msttr(self, segment_window=100, discard=True):
-        """ Mean segmental TTR (MSTTR) computed as average of TTR scores for segments in a text.
+        """Mean segmental TTR (MSTTR) computed as average of TTR scores for segments in a text.
 
-            Split a text into segments of length segment_window. For each segment, compute the TTR.
-            MSTTR score is the sum of these scores divided by the number of segments.
-            (Johnson 1944)
+        Split a text into segments of length segment_window. For each segment, compute the TTR.
+        MSTTR score is the sum of these scores divided by the number of segments.
+        (Johnson 1944)
 
-            Helper Function
-            ---------------
-            segment_generator(List, segment_window):
-                Split a list into s segments of size r (segment_size).
+        Helper Function
+        ---------------
+        segment_generator(List, segment_window):
+            Split a list into s segments of size r (segment_size).
 
-            Parameters
-            ----------
-            segment_window: int
-                Size of each segment (default=100).
-            discard: bool
-                If True, discard the remaining segment (e.g. for a text size of 105 and a segment_window
-                of 100, the last 5 tokens will be discarded). Default is True.
+        Parameters
+        ----------
+        segment_window: int
+            Size of each segment (default=100).
+        discard: bool
+            If True, discard the remaining segment (e.g. for a text size of 105 and a segment_window
+            of 100, the last 5 tokens will be discarded). Default is True.
 
-            Returns
-            -------
-            float
+        Returns
+        -------
+        float
         """
         if segment_window >= self.words:
             raise ValueError(
@@ -306,26 +319,26 @@ class LexicalRichness(object):
         return mean_ttr
 
     def mattr(self, window_size=100):
-        """ Moving average TTR (MATTR) computed using the average of TTRs over successive segments
-            of a text.
+        """Moving average TTR (MATTR) computed using the average of TTRs over successive segments
+        of a text.
 
-            Estimate TTR for tokens 1 to n, 2 to n+1, 3 to n+2, and so on until the end
-            of the text (where n is window size), then take the average.
-            (Covington 2007, Covington and McFall 2010)
+        Estimate TTR for tokens 1 to n, 2 to n+1, 3 to n+2, and so on until the end
+        of the text (where n is window size), then take the average.
+        (Covington 2007, Covington and McFall 2010)
 
-            Helper Function
-            ---------------
-            list_sliding_window(sequence, window_size):
-                Returns a sliding window generator (of size window_size) over a sequence
+        Helper Function
+        ---------------
+        list_sliding_window(sequence, window_size):
+            Returns a sliding window generator (of size window_size) over a sequence
 
-            Parameter
-            ---------
-            window_size: int
-                Size of each sliding window.
+        Parameter
+        ---------
+        window_size: int
+            Size of each sliding window.
 
-            Returns
-            -------
-            float
+        Returns
+        -------
+        float
         """
         if window_size > self.words:
             raise ValueError(
@@ -350,23 +363,23 @@ class LexicalRichness(object):
         return mattr
 
     def mtld(self, threshold=0.72):
-        """ Measure of textual lexical diversity, computed as the mean length of sequential words in
-            a text that maintains a minimum threshold TTR score.
+        """Measure of textual lexical diversity, computed as the mean length of sequential words in
+        a text that maintains a minimum threshold TTR score.
 
-            Iterates over words until TTR scores falls below a threshold, then increase factor
-            counter by 1 and start over. McCarthy and Jarvis (2010, pg. 385) recommends a factor
-            threshold in the range of [0.660, 0.750].
-            (McCarthy 2005, McCarthy and Jarvis 2010)
+        Iterates over words until TTR scores falls below a threshold, then increase factor
+        counter by 1 and start over. McCarthy and Jarvis (2010, pg. 385) recommends a factor
+        threshold in the range of [0.660, 0.750].
+        (McCarthy 2005, McCarthy and Jarvis 2010)
 
-            Parameters
-            ----------
-            threshold: float
-                Factor threshold for MTLD. Algorithm skips to a new segment when TTR goes below the
-                threshold (default=0.72).
+        Parameters
+        ----------
+        threshold: float
+            Factor threshold for MTLD. Algorithm skips to a new segment when TTR goes below the
+            threshold (default=0.72).
 
-            Returns
-            -------
-            float
+        Returns
+        -------
+        float
         """
 
         def sub_mtld(self, threshold, reverse=False):
@@ -427,22 +440,22 @@ class LexicalRichness(object):
         return mtld
 
     def hdd(self, draws=42):
-        """ Hypergeometric distribution diversity (HD-D) score.
+        """Hypergeometric distribution diversity (HD-D) score.
 
-            For each term (t) in the text, compute the probabiltiy (p) of getting at least one appearance
-            of t with a random draw of size n < N (text size). The contribution of t to the final HD-D
-            score is p * (1/n). The final HD-D score thus sums over p * (1/n) with p computed for
-            each term t. Described in McCarthy and Javis 2007, p.g. 465-466.
-            (McCarthy and Jarvis 2007)
+        For each term (t) in the text, compute the probabiltiy (p) of getting at least one appearance
+        of t with a random draw of size n < N (text size). The contribution of t to the final HD-D
+        score is p * (1/n). The final HD-D score thus sums over p * (1/n) with p computed for
+        each term t. Described in McCarthy and Javis 2007, p.g. 465-466.
+        (McCarthy and Jarvis 2007)
 
-            Parameters
-            ----------
-            draws: int
-                Number of random draws in the hypergeometric distribution (default=42).
+        Parameters
+        ----------
+        draws: int
+            Number of random draws in the hypergeometric distribution (default=42).
 
-            Returns
-            -------
-            float
+        Returns
+        -------
+        float
         """
         if self.terms < 42:
             suggestion = self.words // 2
@@ -469,6 +482,7 @@ class LexicalRichness(object):
         ]
 
         return sum(term_contributions)
+
 
     def __str__(self):
         return " ".join(self.wordlist)

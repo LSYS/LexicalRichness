@@ -20,9 +20,15 @@ class TestLexicalrichness(unittest.TestCase):
 
     def setUp(self):
         print("setting up")
-        self.s1 = "TEST text with some text numbers 42, hyphen-here, and text punctuations."
-        self.s2 = "TEST text with some text numbers 42, hyphen–here, and text punctuations."
-        self.s3 = "TEST text with some text numbers 42, hyphen—here, and text punctuations."
+        self.s1 = (
+            "TEST text with some text numbers 42, hyphen-here, and text punctuations."
+        )
+        self.s2 = (
+            "TEST text with some text numbers 42, hyphen–here, and text punctuations."
+        )
+        self.s3 = (
+            "TEST text with some text numbers 42, hyphen—here, and text punctuations."
+        )
         self.emptystring = ""
         self.longtext = """Measure of textual lexical diversity, computed as the mean length of sequential words in
                 a text that maintains a minimum threshold TTR score.
@@ -178,9 +184,7 @@ class TestLexicalrichness(unittest.TestCase):
 
         self.assertEqual(self.obj1.mattr(window_size=5), 0.9)
         self.assertEqual(self.obj1.mattr(window_size=1), 1)
-        self.assertEqual(
-            self.obj1.mattr(window_size=self.obj1.words), self.obj1.ttr
-        )
+        self.assertEqual(self.obj1.mattr(window_size=self.obj1.words), self.obj1.ttr)
 
         with self.assertRaises(ValueError):
             self.obj1.mattr(window_size=0)
