@@ -220,6 +220,14 @@ class TestLexicalrichness(unittest.TestCase):
         print("testing voc-D")
         self.assertIs(type(self.longtext.vocd()), np.float64)
 
+        # Gently raise exception if text size is small
+        with pytest.raises(ValueError) as err:
+            self.obj1.vocd()
+        assert (
+            str(err.value)
+            == "Number of tokens in text smaller than number of tokens to sample."
+        )
+
         # Test that random seed works (for reproducibility)
         first_seed42 = self.longtext.vocd()
         second_seed42 = self.longtext.vocd()
