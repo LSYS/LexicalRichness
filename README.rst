@@ -362,6 +362,21 @@ For now, refer to the study below for algorithmic details:
 	   
 	
 	.. raw:: html    
+
+* `[4] <https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books>`_ **A Small Study on German Translated Books** This study analyses a small sample of English books and compares them to their German translation. Within the sample, it can be observed that the German translations tend to be shorter in length, but contain more unique terms than their English counterparts. LexicalRichness was used to generate the statistics modeled within the study. 
+   
+	.. raw:: html
+
+	   <details>
+	   <summary><a>Words vs Terms in Each Book</a></summary>
+		
+		<p align="left">
+			<img width="45%" src="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books/blob/main/figures/words%20vs%20terms%20scatter.png">
+			<br>
+			Source: <a href="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books">(https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books)</a>
+		</p>  
+	
+	.. raw:: html    
 	
 	    
 9. Contributing
