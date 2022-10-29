@@ -1,3 +1,4 @@
 sphinx-material
 sphinx-rtd-theme
+jupyter
 runpynb
