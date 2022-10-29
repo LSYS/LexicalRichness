@@ -231,6 +231,8 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``hdd``                 | HD-D (McCarthy and Jarvis 2007)                                                   |
 +-------------------------+-----------------------------------------------------------------------------------+
+| ``vocd``                | voc-D (Mckee, Malvern, and Richards 2010)                                         |
++-------------------------+-----------------------------------------------------------------------------------+
 
 **Assessing method docstrings**
 
@@ -287,7 +289,6 @@ For now, refer to the study below for algorithmic details:
 
 	Shen, Lucas (2021). Measuring political media using text data.
 	(https://www.lucasshen.com/research/media.pdf)
-    
 
 	.. raw:: html
 
@@ -342,7 +343,8 @@ For now, refer to the study below for algorithmic details:
 		@techreport{accuracybias, 
 		title={Measuring Political Media Slant Using Text Data},
 		author={Shen, Lucas},
-		url={https://www.lucasshen.com/research/media.pdf}
+		url={https://www.lucasshen.com/research/media.pdf},
+		year={2021}
 		}
 	
 	.. raw:: html    	    
@@ -395,9 +397,12 @@ See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
+If you'd like to contribute via a Pull Request (PR), feel free to open an issue on the `Issue Tracker
+<https://github.com/LSYS/LexicalRichness/issues>`__ to discuss the potential contribution via a PR.
+
 10. Citing
 ----------
-If you have used this codebase and wish to cite it, please cite as below.
+If you have used this codebase and wish to cite it, here is the citation metadata.
 
 Codebase:
 
@@ -419,9 +424,9 @@ Documentation on formulations and algorithms:
 	@misc{accuracybias, 
 	title={Measuring Political Media Slant Using Text Data},
 	author={Shen, Lucas},
-	url={https://www.lucasshen.com/research/media.pdf}
+	url={https://www.lucasshen.com/research/media.pdf},
+	year={2021}
 	}
-
 
 The package is released under the `MIT
 License <https://opensource.org/licenses/MIT>`__.
