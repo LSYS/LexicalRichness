@@ -4,13 +4,23 @@ all: setup test lint clean
 setup: # Setup dependencies
 setup: 
 	@pip install -r requirements.txt
+	@pip install -r requirements_dev.txt
+	@pip install -r docs/requirements.txt
 
 test: # Run tests with pytest and coverage
 test: 
-	coverage run -m pytest
+	@echo "+ $@"
+	coverage run -m pytest -v
+	coverage report -m
 
+.PHONY: lint
 lint: # Check with mypy, pyflakes, black
 lint: 
+	@echo "+ $@"
+	black setup.py $(BLACK_OPTS)
+	black lexicalrichness/lexicalrichness.py
+	black tests/test_lexicalrichness.py
+	python -m pyflakes setup.py
 	python -m pyflakes lexicalrichness/lexicalrichness.py
 	python -m pyflakes tests/test_lexicalrichness.py
 
