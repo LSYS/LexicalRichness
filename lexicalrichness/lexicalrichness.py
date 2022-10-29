@@ -483,6 +483,69 @@ class LexicalRichness(object):
 
         return sum(term_contributions)
 
+    def vocd(self, ntokens=50, within_sample=100, iterations=3, seed=42):
+        """Vocd score of lexical diversity derived from a series of TTR samplings and curve fittings.
+
+        Vocd is meant as a measure of lexical diversity robust to varying text lengths. See also hdd.
+        The vocd is computed in 4 steps as follows.
+
+        Step 1: Take 100 random samples of 35 words from the text. Compute the mean TTR from the 100 samples.
+        Step 2: Repeat this procedure for samples of 36 words, 37 words, and so on, all the way to ntokens
+            (recommended as 50 [default]). In each iteration, compute the TTR. Then get the mean TTR over
+            the different number of tokens. So now we have an array of averaged TTR values for ntoken=35,
+            ntoken=36,..., and so on until ntoken=50.
+        Step 3: Find the best-fitting curve from the empirical function of TTR to word size (ntokens).
+            The value of D that provides the best fit is the vocd score.
+        Step 4: Repeat steps 1 to 3 for x number (default=3) of times before averaging D, which is the
+            returned value.
+
+        Helper Function
+        ---------------
+        ttr_nd
+            TTR as a function of latent lexical diversity (d) and text length (n).
+
+        Parameters
+        ----------
+        ntokens: int
+            Maximum number for the token/word size in the random samplings (default=50).
+        within_sample: int
+            Number of samples for each token/word size (default=100).
+        iterations: int
+            Number of times to repeat steps 1 to 3 before averaging (default=3).
+        seed: int
+            Seed for the pseudo-random number generator in ramdom.sample() (default=42).
+
+        Returns
+        -------
+        float
+        """
+        try:
+            assert self.words > ntokens
+        except Exception:
+            raise ValueError(
+                "Number of tokens in text smaller than number of tokens to sample."
+            )
+
+        random.seed(seed)
+        adapted_d = []
+        for _ in range(iterations):
+            mean_ttr_results = []
+            for ntoken in range(35, 1 + ntokens):
+                ttr_results = []
+                for _ in range(100):
+                    sample_of_tokens = random.sample(self.wordlist, k=ntoken)
+                    n_unique = len(set(sample_of_tokens))
+                    ttr = n_unique / ntoken
+                    ttr_results.append(ttr)
+                mean_ttr = np.mean(ttr_results)
+                mean_ttr_results.append(mean_ttr)
+            # Step 3
+            xdata = list(range(35, 1 + ntokens))
+            ydata = mean_ttr_results
+            popt, _ = curve_fit(ttr_nd, xdata, ydata)
+            adapted_d.append(popt[0])
+        return np.mean(adapted_d)
+
     def __str__(self):
         return " ".join(self.wordlist)
 
