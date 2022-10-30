@@ -1,6 +1,11 @@
 name: Notebooks-pkg
 
-on: workflow_dispatch
+# on: workflow_dispatch
+on:
+  push:
+    branches: [ "master", "patch", "feature", "details-of-measures" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   build_linux:
