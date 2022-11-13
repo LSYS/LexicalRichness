@@ -5,3 +5,4 @@
 
 .. include:: ../README.rst
 
+.. include:: details.rst
