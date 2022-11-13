@@ -1,0 +1,20 @@
+TTR = \frac{t}{w}
+
+RTTR = \frac{t}{\sqrt{w}}
+
+CTTR = \frac{t}{2\sqrt{w}}
+https://latex.codecogs.com/svg.image?\bg{white}CTTR&space;=&space;\frac{t}{2\sqrt{w}}
+
+\text{Herdan} = \frac{log(t)}{log(w)} 
+https://latex.codecogs.com/svg.image?\bg{white}\text{Herdan}&space;=&space;\frac{log(t)}{log(w)}&space;
+
+\text{Summer} = \frac{log \log(t)}{log\log(w)}
+https://latex.codecogs.com/svg.image?\bg{white}\text{Summer}&space;=&space;\frac{log&space;\log(t)}{log\log(w)}
+
+\text{Dugast} = \frac{log(w)^2}{log(w) - log (t)}
+https://latex.codecogs.com/svg.image?\bg{white}\text{Dugast}&space;=&space;\frac{log(w)^2}{log(w)&space;-&space;log&space;(t)}
+
+\text{Maas} = \frac{log(w) - log(t)}{log(w)^2}
+https://latex.codecogs.com/svg.image?\bg{white}\text{Maas}&space;=&space;\frac{log(w)&space;-&space;log(t)}{log(w)^2}
+
+https://editor.codecogs.com/
