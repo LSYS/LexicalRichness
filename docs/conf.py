@@ -14,6 +14,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
+# sys.path.insert(0, os.path.abspath('..'))  # Source code dir relative to this file
 
 # -- Project information -----------------------------------------------------
 
@@ -29,6 +30,9 @@ author = 'Lucas Shen'
 # ones.
 extensions = [
 	'sphinx_rtd_theme',
+	'sphinx.ext.autodoc',
+	'sphinx.ext.duration',
+	'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
