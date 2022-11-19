@@ -373,7 +373,7 @@ For now, refer to the study below for algorithmic details:
 	   <summary><a>Words vs Terms in Each Book</a></summary>
 		
 		<p align="left">
-			<img width="50%" src="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books/blob/main/figures/words%20vs%20terms%20scatter.png">
+			<img width="50%" src="https://raw.githubusercontent.com/g-hurst/Comparing-Properties-of-German-and-English-Books/main/figures/words%20vs%20terms%20scatter.png">
 			<br>
 			Source: <a href="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books">(https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books)</a>
 		</p>  
