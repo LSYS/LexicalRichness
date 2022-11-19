@@ -10,7 +10,7 @@ The two fundamental building blocks of all the measures are:
 
 **TTR:** Type-Token Ratio (*Chotlos 1944, Templin 1957*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn/ttr.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/ttr.svg
    :alt: TTR
    :align: center   
 ----
@@ -18,42 +18,42 @@ The two fundamental building blocks of all the measures are:
    
 **RTTR:** Root Type-Token Ratio (*Guiraud 1954, 1960*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn/rttr.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/rttr.svg
    :alt: TTR
    :align: center   
 ----
 
 **CTTR:** Corrected Type-Token Ratio (*Carrol 1964*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn/cttr.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/cttr.svg
    :alt: TTR
    :align: center   
 ----
 
 **Herdan**: Herdan's C (*Herdan 1960, 1964*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/details-of-measures/docs/assets/eqn/herdan.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/herdan.svg
    :alt: Herdan's C
    :align: center   
 ----
 
 **Summer**: Summer (*Summer 1966*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/details-of-measures/docs/assets/eqn/summer.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/summer.svg
    :alt: Summer
    :align: center   
 ----
 
 **Dugast**: Dugast (*Dugast 1978*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/details-of-measures/docs/assets/eqn/dugast.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/dugast.svg
    :alt: Dugast
    :align: center   
 ----
 
 **Maas**: Maas (*Maas 1972*)
 
-.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/details-of-measures/docs/assets/eqn/maas.svg
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/maas.svg
    :alt: Maas
    :align: center   
 ----
