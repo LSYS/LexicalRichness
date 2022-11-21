@@ -304,6 +304,7 @@ For now, refer to the study below for algorithmic details:
 		@techreport{accuracybias, 
 		title={Measuring Political Media Slant Using Text Data},
 		author={Shen, Lucas},
+		year={2021},
 		url={https://www.lucasshen.com/research/media.pdf}
 		}
 	
