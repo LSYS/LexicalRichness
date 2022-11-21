@@ -125,6 +125,10 @@ Try the package on the cloud (without setting anything up on your local machine)
 	>>> lex.hdd(draws=42)
 	0.7468703323966486
 
+	# Return voc-D score of lexical richness.
+	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
+	46.27679899103406
+
 	# Return Herdan's lexical diversity measure.
 	>>> lex.Herdan
 	0.9061378160786574
