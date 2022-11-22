@@ -12,7 +12,7 @@ with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
 
-requirements = ["scipy>=1.0.0", "textblob>=0.15.3"]
+requirements = ["scipy>=1.0.0", "textblob>=0.15.3", "pandas", "scipy"]
 
 setup(
     author="Lucas Shen YS",
@@ -22,12 +22,12 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     description="A small module to compute textual lexical richness (aka lexical diversity).",
     install_requires=requirements,
@@ -56,6 +56,6 @@ setup(
     name="lexicalrichness",
     packages=find_packages(include=["lexicalrichness"]),
     url="https://github.com/LSYS/lexicalrichness",
-    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.3.0.tar.gz",
-    version="0.3.0",
+    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.3.1.tar.gz",
+    version="0.3.1",
 )
