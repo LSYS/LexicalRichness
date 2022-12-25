@@ -10,3 +10,4 @@
 
 .. include:: details.rst
 
+.. include:: docstring_docs.rst
