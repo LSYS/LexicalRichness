@@ -94,9 +94,10 @@ def segment_generator(List, segment_size):
     segment_size: int
         Size of each segment.
 
-    Returns
+    Yields
     -------
-    Generator
+    List
+        List of s lists of with r items in each list.
     """
     for i in range(0, len(List), segment_size):
         yield List[i : i + segment_size]
@@ -106,13 +107,18 @@ def list_sliding_window(sequence, window_size=2):
     """Returns a sliding window generator (of size window_size) over a sequence. Taken from
     https://docs.python.org/release/2.3.5/lib/itertools-example.html
 
-    Example
-    -------
+    Example:
+
     List = ['a', 'b', 'c', 'd']
+
     window_size = 2
-    list_sliding_window(List, 2) -> ('a', 'b')
-                                    ('b', 'c')
-                                    ('c', 'd')
+
+    list_sliding_window(List, 2) ->
+        ('a', 'b')
+
+        ('b', 'c')
+
+        ('c', 'd')
 
     Parameters
     ----------
@@ -121,9 +127,10 @@ def list_sliding_window(sequence, window_size=2):
     window_size: int
         Size of each window.
 
-    Returns
-    -------
-    Generator
+    Yields
+    ------
+    List
+        List of tuples of start and end points.
 
     """
     iterable = iter(sequence)
@@ -143,6 +150,15 @@ def ttr_nd(N, D):
     Directly referenced from McKee, Mavern, and Richard 2000.
 
     Used to compute vocd(self, ntokens=50, within_sample=100, iterations=3, seed=42).
+
+    Parameters
+    ----------
+    N: int
+        Number of tokens
+
+    Returns
+    -------
+    float
     """
     return (D / N) * (np.sqrt(1 + 2 * (N / D)) - 1)
 
@@ -211,6 +227,11 @@ class LexicalRichness(object):
         """Type-token ratio (TTR) computed as t/w, where t is the number of unique terms/vocab,
         and w is the total number of words.
         (Chotlos 1944, Templin 1957)
+
+        Returns
+        -------
+        Float
+            Type-token ratio
         """
         return self.terms / self.words
 
@@ -220,6 +241,11 @@ class LexicalRichness(object):
         and w is the total number of words.
         Also known as Guiraud's R and Guiraud's index.
         (Guiraud 1954, 1960)
+
+        Returns
+        -------
+        FLoat
+            Root type-token ratio
         """
         return self.terms / sqrt(self.words)
 
@@ -228,6 +254,11 @@ class LexicalRichness(object):
         """Corrected TTR (CTTR) computed as t/sqrt(2 * w), where t is the number of unique terms/vocab,
         and w is the total number of words.
         (Carrol 1964)
+
+        Returns
+        -------
+        Float
+            Corrected type-token ratio
         """
         return self.terms / sqrt(2 * self.words)
 
@@ -237,6 +268,11 @@ class LexicalRichness(object):
         total number of words.
         Also known as Herdan's C.
         (Herdan 1960, 1964)
+
+        Returns
+        -------
+        Float
+            Herdan's C
         """
         return log(self.terms) / log(self.words)
 
@@ -245,6 +281,11 @@ class LexicalRichness(object):
         """Computed as log(log(t)) / log(log(w)), where t is the number of unique terms/vocab, and
         w is the total number of words.
         (Summer 1966)
+
+        Returns
+        -------
+        Float
+            Summer
         """
         return log(log(self.terms)) / log(log(self.words))
 
@@ -253,6 +294,11 @@ class LexicalRichness(object):
         """Computed as (log(w) ** 2) / (log(w) - log(t)), where t is the number of unique terms/vocab,
         and w is the total number of words.
         (Dugast 1978)
+
+        Returns
+        -------
+        Float
+            Dugast
         """
         # raise exception if terms and words count are the same
         if self.words == self.terms:
@@ -266,6 +312,11 @@ class LexicalRichness(object):
         unique terms/vocab, and w is the total number of words. Unlike the other measures, lower
         maas measure indicates higher lexical richness.
         (Maas 1972)
+
+        Returns
+        -------
+        Float
+            Maas
         """
         return (log(self.words) - log(self.terms)) / (log(self.words) ** 2)
 
@@ -277,9 +328,9 @@ class LexicalRichness(object):
         MSTTR score is the sum of these scores divided by the number of segments.
         (Johnson 1944)
 
-        Helper Function
-        ---------------
-        segment_generator(List, segment_window):
+        See Also
+        --------
+        segment_generator:
             Split a list into s segments of size r (segment_size).
 
         Parameters
@@ -293,6 +344,7 @@ class LexicalRichness(object):
         Returns
         -------
         float
+            Mean segmental type-token ratio (MSTTR)
         """
         if segment_window >= self.words:
             raise ValueError(
@@ -326,19 +378,20 @@ class LexicalRichness(object):
         of the text (where n is window size), then take the average.
         (Covington 2007, Covington and McFall 2010)
 
-        Helper Function
-        ---------------
-        list_sliding_window(sequence, window_size):
+        See Also
+        --------
+        list_sliding_window:
             Returns a sliding window generator (of size window_size) over a sequence
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         window_size: int
             Size of each sliding window.
 
         Returns
         -------
         float
+            Moving average type-token ratio (MATTR)
         """
         if window_size > self.words:
             raise ValueError(
@@ -380,6 +433,7 @@ class LexicalRichness(object):
         Returns
         -------
         float
+            Measure of textual lexical diversity (MTLD)
         """
 
         def sub_mtld(self, threshold, reverse=False):
@@ -456,6 +510,7 @@ class LexicalRichness(object):
         Returns
         -------
         float
+            Hypergeometric distribution diversity (HD-D) score
         """
         if self.terms < 42:
             suggestion = self.words // 2
@@ -490,17 +545,20 @@ class LexicalRichness(object):
         The vocd is computed in 4 steps as follows.
 
         Step 1: Take 100 random samples of 35 words from the text. Compute the mean TTR from the 100 samples.
-        Step 2: Repeat this procedure for samples of 36 words, 37 words, and so on, all the way to ntokens
-            (recommended as 50 [default]). In each iteration, compute the TTR. Then get the mean TTR over
-            the different number of tokens. So now we have an array of averaged TTR values for ntoken=35,
-            ntoken=36,..., and so on until ntoken=50.
-        Step 3: Find the best-fitting curve from the empirical function of TTR to word size (ntokens).
-            The value of D that provides the best fit is the vocd score.
-        Step 4: Repeat steps 1 to 3 for x number (default=3) of times before averaging D, which is the
-            returned value.
 
-        Helper Function
-        ---------------
+        Step 2: Repeat this procedure for samples of 36 words, 37 words, and so on, all the way to ntokens
+        (recommended as 50 [default]). In each iteration, compute the TTR. Then get the mean TTR over
+        the different number of tokens. So now we have an array of averaged TTR values for ntoken=35,
+        ntoken=36,..., and so on until ntoken=50.
+
+        Step 3: Find the best-fitting curve from the empirical function of TTR to word size (ntokens).
+        The value of D that provides the best fit is the vocd score.
+
+        Step 4: Repeat steps 1 to 3 for x number (default=3) of times before averaging D, which is the
+        returned value.
+
+        See Also
+        --------
         ttr_nd
             TTR as a function of latent lexical diversity (d) and text length (n).
 
@@ -518,6 +576,7 @@ class LexicalRichness(object):
         Returns
         -------
         float
+            voc-D
         """
         try:
             assert self.words > ntokens
