@@ -163,12 +163,12 @@ Use :code:`LexicalRichness` with your own :code:`nlp_pipeline`:
 .. code-block:: python
 
 	# Initiate new LexicalRichness object with your preprocessing pipeline as input
-	lex = LexicalRichness(text, preprocesser=None, tokenizer=nlp_pipeline)
+	lex = LexicalRichness(text, preprocessor=None, tokenizer=nlp_pipeline)
 
 	# Compute lexical richness
 	mtld = lex.mtld()
 	
-Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`list_of_tokens` with :code:`preprocesser=None` and :code:`tokenizer=None`:
+Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`list_of_tokens` with :code:`preprocessor=None` and :code:`tokenizer=None`:
 	
 .. code-block:: python
 
@@ -176,7 +176,7 @@ Or use :code:`LexicalRichness` at the end of your pipeline and input the :code:`
 	list_of_tokens = nlp_pipeline(text)
 	
 	# Initiate new LexicalRichness object with your list of tokens as input
-	lex = LexicalRichness(list_of_tokens, preprocesser=None, tokenizer=None)
+	lex = LexicalRichness(list_of_tokens, preprocessor=None, tokenizer=None)
 
 	# Compute lexical richness
 	mtld = lex.mtld()	
