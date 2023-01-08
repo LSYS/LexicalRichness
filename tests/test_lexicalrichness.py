@@ -13,6 +13,7 @@ from lexicalrichness.lexicalrichness import segment_generator
 from lexicalrichness.lexicalrichness import ttr_nd
 import pytest
 import numpy as np
+import matplotlib
 
 
 class TestLexicalrichness(unittest.TestCase):
@@ -236,6 +237,17 @@ class TestLexicalrichness(unittest.TestCase):
         assert first_seed42 != third_seed0
         assert second_seed42 != third_seed0
 
+    def test_vocd_fig(self):
+        print("testing voc-D figure")
+        self.assertIs(type(self.longtext.vocd_fig()), matplotlib.figure.Figure)
+
+        # Gently raise exception if text size is small
+        with pytest.raises(ValueError) as err:
+            self.obj1.vocd_fig()
+        assert (
+            str(err.value)
+            == "Number of tokens in text smaller than number of tokens to sample."
+        )
 
 if __name__ == "__main__":
     unittest.main()
