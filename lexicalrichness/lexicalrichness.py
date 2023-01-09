@@ -624,6 +624,7 @@ class LexicalRichness(object):
         ylabel="TTR",
         figsize=None,
         title="",
+        savepath=None,
     ):
         """ Plots the empirical function of TTR to word sampling and the best-fitting curve in the 
             vocd measure. Vocd is meant as a measure of lexical diversity robust to varying text lengths. 
@@ -688,7 +689,7 @@ class LexicalRichness(object):
         popt, _ = curve_fit(ttr_nd, xdata, ydata)
 
         # Plot
-        fig = plt.figure(figsize=figsize)
+        _, ax = plt.subplots(figsize=figsize, facecolor="white")
         plt.plot(
             xdata,
             ydata,
@@ -713,11 +714,13 @@ class LexicalRichness(object):
         plt.legend(
             loc="best", fontsize=11, frameon=False, fancybox=True, framealpha=0.8,
         )
+        if savepath:
+            plt.savefig(savepath, dpi='figure', bbox_inches='tight')
 
         if return_data:
-            return fig, xdata, ydata, list(ttr_nd(xdata, popt))
+            return ax, xdata, ydata, list(ttr_nd(xdata, popt))
         else:
-            return fig
+            return ax
             
     def __str__(self):
         return " ".join(self.wordlist)
