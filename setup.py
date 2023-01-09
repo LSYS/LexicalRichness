@@ -12,7 +12,7 @@ with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
 
-requirements = ["scipy>=1.0.0", "textblob>=0.15.3", "pandas", "scipy"]
+requirements = ["scipy>=1.0.0", "textblob>=0.15.3", "pandas", "scipy", "matplotlib"]
 
 setup(
     author="Lucas Shen YS",
@@ -56,6 +56,6 @@ setup(
     name="lexicalrichness",
     packages=find_packages(include=["lexicalrichness"]),
     url="https://github.com/LSYS/lexicalrichness",
-    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.3.1.tar.gz",
-    version="0.3.1",
+    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.4.0.tar.gz",
+    version="0.4.0",
 )
