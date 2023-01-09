@@ -130,10 +130,6 @@ Try the package on the cloud (without setting anything up on your local machine)
 	>>> lex.vocd()
 	46.27679899103406
 
-	# Return voc-D score of lexical richness.
-	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
-	46.27679899103406
-
 	# Return Herdan's lexical diversity measure.
 	>>> lex.Herdan
 	0.9061378160786574
@@ -245,6 +241,20 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 | ``vocd_fig``            | Utility to plot empirical voc-D curve 	                                      |
 +-------------------------+-----------------------------------------------------------------------------------+
 
+**Plot the empirical voc-D curve**
+
+.. code-block:: python
+
+	lex.vocd_fig(
+	    ntokens=50,  # Maximum number for the token/word size in the random samplings
+	    within_sample=100,  # Number of samples
+	    seed=42,  # Seed for reproducibility
+	)
+
+.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
+
+
+
 **Assessing method docstrings**
 
 .. code-block:: python
@@ -311,7 +321,6 @@ For now, refer to the study below for algorithmic details:
 		@techreport{accuracybias, 
 		title={Measuring Political Media Slant Using Text Data},
 		author={Shen, Lucas},
-		year={2021},
 		url={https://www.lucasshen.com/research/media.pdf}
 		}
 	
@@ -385,7 +394,7 @@ For now, refer to the study below for algorithmic details:
 	   <summary><a>Words vs Terms in Each Book</a></summary>
 		
 		<p align="left">
-			<img width="50%" src="https://raw.githubusercontent.com/g-hurst/Comparing-Properties-of-German-and-English-Books/main/figures/words%20vs%20terms%20scatter.png">
+			<img width="50%" src="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books/blob/main/figures/words%20vs%20terms%20scatter.png">
 			<br>
 			Source: <a href="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books">(https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books)</a>
 		</p>  
