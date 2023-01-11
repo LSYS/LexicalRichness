@@ -130,6 +130,10 @@ Try the package on the cloud (without setting anything up on your local machine)
 	>>> lex.vocd()
 	46.27679899103406
 
+	# Return voc-D score of lexical richness.
+	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
+	46.27679899103406
+
 	# Return Herdan's lexical diversity measure.
 	>>> lex.Herdan
 	0.9061378160786574
@@ -321,6 +325,7 @@ For now, refer to the study below for algorithmic details:
 		@techreport{accuracybias, 
 		title={Measuring Political Media Slant Using Text Data},
 		author={Shen, Lucas},
+		year={2021},
 		url={https://www.lucasshen.com/research/media.pdf}
 		}
 	
