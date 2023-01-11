@@ -9,6 +9,7 @@ LexicalRichness
 `LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
 
 Lexical richness refers to the range and variety of vocabulary deployed in a text by a speaker/writer `(McCarthy and Jarvis 2007) <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1028.8657&rep=rep1&type=pdf>`_ . Lexical richness is used interchangeably with lexical diversity, lexical variation, lexical density, and vocabulary richness and is measured by a wide variety of indices. Uses include (but not limited to) measuring writing quality, vocabulary knowledge `(Šišková 2012) <https://www.researchgate.net/publication/305999633_Lexical_Richness_in_EFL_Students'_Narratives>`_ , speaker competence, and socioeconomic status `(McCarthy and Jarvis 2007) <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1028.8657&rep=rep1&type=pdf>`_. 
+See the `notebook <https://nbviewer.org/github/LSYS/LexicalRichness/blob/master/docs/example.ipynb>`_ for examples.
 
 .. TOC
 .. contents:: **Table of Contents**
@@ -124,6 +125,10 @@ Try the package on the cloud (without setting anything up on your local machine)
 	# Return hypergeometric distribution diversity (HD-D) measure.
 	>>> lex.hdd(draws=42)
 	0.7468703323966486
+	
+	# Return voc-D measure.
+	>>> lex.vocd()
+	46.27679899103406
 
 	# Return voc-D score of lexical richness.
 	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
@@ -237,6 +242,22 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``vocd``                | voc-D (Mckee, Malvern, and Richards 2010)                                         |
 +-------------------------+-----------------------------------------------------------------------------------+
+| ``vocd_fig``            | Utility to plot empirical voc-D curve 	                                      |
++-------------------------+-----------------------------------------------------------------------------------+
+
+**Plot the empirical voc-D curve**
+
+.. code-block:: python
+
+	lex.vocd_fig(
+	    ntokens=50,  # Maximum number for the token/word size in the random samplings
+	    within_sample=100,  # Number of samples
+	    seed=42,  # Seed for reproducibility
+	)
+
+.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
+
+
 
 **Assessing method docstrings**
 
@@ -378,7 +399,7 @@ For now, refer to the study below for algorithmic details:
 	   <summary><a>Words vs Terms in Each Book</a></summary>
 		
 		<p align="left">
-			<img width="50%" src="https://raw.githubusercontent.com/g-hurst/Comparing-Properties-of-German-and-English-Books/main/figures/words%20vs%20terms%20scatter.png">
+			<img width="50%" src="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books/blob/main/figures/words%20vs%20terms%20scatter.png">
 			<br>
 			Source: <a href="https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books">(https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books)</a>
 		</p>  

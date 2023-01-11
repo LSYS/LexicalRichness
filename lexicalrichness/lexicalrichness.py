@@ -16,6 +16,7 @@ import numpy as np
 from scipy.stats import hypergeom
 from scipy.optimize import curve_fit
 import random
+import matplotlib.pyplot as plt
 
 try:
     from textblob import TextBlob
@@ -605,6 +606,122 @@ class LexicalRichness(object):
             adapted_d.append(popt[0])
         return np.mean(adapted_d)
 
+    def vocd_fig(
+        self,
+        ntokens=50,
+        within_sample=100,
+        seed=42,
+        return_data=False,
+        color1="darkslategray",
+        color2="black",
+        leglabel1="Random-sampling TTR curve",
+        leglabel2="Best-fitting theoretical curve",
+        lwidth1=3,
+        lwidth2=1.5,
+        lpattern1="-",
+        lpattern2="--",
+        xlabel="Sample size",
+        ylabel="TTR",
+        figsize=None,
+        title="",
+        savepath=None,
+    ):
+        """ Plots the empirical function of TTR to word sampling and the best-fitting curve in the 
+            vocd measure. Vocd is meant as a measure of lexical diversity robust to varying text lengths. 
+            See also vocd and hdd.
+
+            The horizontal axis is the token/word size of the random samplings (e.g. token size=50 means 
+            that each of the 100 samples consists of 50 words).
+            The vertical axis is the mean TTR score from the 100 samples computed in 2 steps as follows. 
+            First, take 100 random samples of 35 words from the text. Compute the mean TTR from the 100 
+            samples. Second, repeat this procedure for samples of 36 words, 37 words, and so on, all the 
+            way to ntokens (recommended as 50 [default]).
+
+            Helper Function
+            ---------------
+            ttr_nd 
+                TTR as a function of latent lexical diversity (d) and text length (n).
+
+            Parameters
+            ----------
+            ntokens: int
+                Maximum number for the token/word size in the random samplings (default=50).
+            within_sample: int
+                Number of samples for each token/word size (default=100).
+            iterations: int
+                Number of times to repeat steps 1 to 3 before averaging (default=3).
+            seed: int
+                Seed for the pseudo-random number generator in ramdom.sample() (default=42).
+            return_data: boolean
+                If True, returns a tuple (figure, xvalues, empirical_TTR, fitted_TTR). Default is False.
+                xvalues, empirical_TTR, and fitted_TTR are lists of numbers.
+
+            Returns
+            -------
+            matplotlib.figure.Figure            
+        """
+        try:
+            assert self.words > ntokens
+        except Exception:
+            raise ValueError(
+                "Number of tokens in text smaller than number of tokens to sample."
+            )
+
+        random.seed(seed)
+        ydata = []
+        for ntoken in range(35, 1 + ntokens):
+            ttr_results = []
+            for _ in range(100):
+                sample_of_tokens = random.sample(self.wordlist, k=ntoken)
+
+                n_unique = len(set(sample_of_tokens))
+
+                ttr = n_unique / ntoken
+
+                ttr_results.append(ttr)
+
+            mean_ttr = np.mean(ttr_results)
+            ydata.append(mean_ttr)
+
+        xdata = list(range(35, 1 + ntokens))
+        assert len(xdata) == len(ydata)
+
+        popt, _ = curve_fit(ttr_nd, xdata, ydata)
+
+        # Plot
+        _, ax = plt.subplots(figsize=figsize, facecolor="white")
+        plt.plot(
+            xdata,
+            ydata,
+            color=color1,
+            linewidth=lwidth1,
+            linestyle=lpattern1,
+            label=leglabel1,
+        )
+        plt.plot(
+            xdata,
+            ttr_nd(xdata, popt),
+            color=color2,
+            linewidth=lwidth2,
+            linestyle=lpattern2,
+            label=leglabel2,
+            alpha=0.6,
+        )
+        plt.locator_params(axis="y", nbins=5)
+        plt.xlabel(xlabel, fontweight="bold", loc="right", size=12)
+        plt.ylabel(ylabel, fontweight="bold", loc="top", size=12)
+        plt.title(title, fontweight="bold", loc="left", size=12)
+        plt.legend(
+            loc="best", fontsize=11, frameon=False, fancybox=True, framealpha=0.8,
+        )
+        if savepath:
+            plt.savefig(savepath, dpi='figure', bbox_inches='tight')
+
+        if return_data:
+            return ax, xdata, ydata, list(ttr_nd(xdata, popt))
+        else:
+            return ax
+            
     def __str__(self):
         return " ".join(self.wordlist)
 
