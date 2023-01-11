@@ -239,7 +239,7 @@ class TestLexicalrichness(unittest.TestCase):
 
     def test_vocd_fig(self):
         print("testing voc-D figure")
-        self.assertIs(type(self.longtext.vocd_fig()), matplotlib.figure.Figure)
+        assert isinstance(self.longtext.vocd_fig(), matplotlib.pyplot.Axes)
 
         # Gently raise exception if text size is small
         with pytest.raises(ValueError) as err:
