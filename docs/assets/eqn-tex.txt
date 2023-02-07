@@ -17,4 +17,16 @@ https://latex.codecogs.com/svg.image?\bg{white}\text{Dugast}&space;=&space;\frac
 \text{Maas} = \frac{log(w) - log(t)}{log(w)^2}
 https://latex.codecogs.com/svg.image?\bg{white}\text{Maas}&space;=&space;\frac{log(w)&space;-&space;log(t)}{log(w)^2}
 
+\text{Yule's K'} = 10^4 \times \left\{\sum_{i=1}^n f(i,N) \left(\frac{i}{N}\right)^2 -\frac{1}{N} \right\}
+https://latex.codecogs.com/svg.image?\text{Yule%27s%20K%27}%20=%2010^4%20\times%20\left\{\sum_{i=1}^n%20f(i,N)%20\left(\frac{i}{N}\right)^2%20-\frac{1}{N}%20\right\}
+
+\text{Yule's I} = \frac{t^2}{\sum^{n_{\text{max}}}_{i=1} i^2f(i,w) - t}
+https://latex.codecogs.com/svg.image?\text{Yule%27s%20I}%20=%20\frac{t^2}{\sum^{n_{\text{max}}}_{i=1}%20i^2f(i,w)%20-%20t}
+
+\text{Herdan's Vm} = \sqrt{\sum^{n_{\text{max}}}_{i=1} f(i,w) \left(\frac{i}{w} \right)^2 - \frac{1}{w}}
+https://latex.codecogs.com/svg.image?\text{Herdan%27s%20Vm}%20=%20\sqrt{\sum^{n_{\text{max}}}_{i=1}%20f(i,w)%20\left(\frac{i}{w}%20\right)^2%20-%20\frac{1}{w}}
+
+\text{Simpson's D} = \sum^{n_{\text{max}}}_{i=1} f(i,w) \frac{i}{w}\frac{i-1}{w-1}
+https://latex.codecogs.com/svg.image?\text{Simpson%27s%20D}%20=%20\sum^{n_{\text{max}}}_{i=1}%20f(i,w)%20\frac{i}{w}\frac{i-1}{w-1}
+
 https://editor.codecogs.com/

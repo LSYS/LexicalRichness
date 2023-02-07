@@ -57,3 +57,31 @@ The two fundamental building blocks of all the measures are:
    :alt: Maas
    :align: center   
 ----
+
+**Yule's K** (Yule 1944, Tweedie and Baayen 1998)
+
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/yulek.svg
+   :alt: Yule's K
+   :align: center   
+----
+
+**Yule's I** (Yule 1944, Tweedie and Baayen 1998)
+
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/yulei.svg
+   :alt: Yule's I
+   :align: center   
+----
+
+**Herdan's Vm** (Herdan 1955, Tweedie and Baayen 1998)
+
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/herdanvm.svg
+   :alt: Herdan's Vm
+   :align: center   
+----
+
+**Simpson's D** (Simpson 1949, Tweedie and Baayen 1998)
+
+.. figure:: https://raw.githubusercontent.com/lsys/lexicalrichness/master/docs/assets/eqn-img/simpsond.svg
+   :alt: Simpson's D
+   :align: center   
+----
