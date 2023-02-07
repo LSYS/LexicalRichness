@@ -6,6 +6,8 @@
 .. toctree::
    :maxdepth: 2
 
+.. include:: usefullinks.rst
+
 .. include:: ../README.rst
 
 .. include:: details.rst
