@@ -3,7 +3,7 @@ LexicalRichness
 ===============
 |	|pypi| |conda-forge| |latest-release| |python-ver| 
 |	|ci-status| |rtfd| |maintained|
-|	|PRs| |codefactor| |lgtm|
+|	|PRs| |codefactor| 
 |	|license| |mybinder| |zenodo|
 
 `LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
