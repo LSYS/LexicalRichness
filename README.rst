@@ -310,26 +310,8 @@ Alternatively, just do
 	    
 7. Formulation & Algorithmic Details
 ------------------------------------
-For now, refer to the study below for algorithmic details:
-
-	Shen, Lucas (2021). Measuring political media using text data.
-	(https://www.lucasshen.com/research/media.pdf)
-
-	.. raw:: html
-
-	   <details>
-	   <summary><a>Click here for citation metadata</a></summary>
-
-	.. code-block:: bib
-
-		@techreport{accuracybias, 
-		title={Measuring Political Media Slant Using Text Data},
-		author={Shen, Lucas},
-		year={2021},
-		url={https://www.lucasshen.com/research/media.pdf}
-		}
-	
-	.. raw:: html    
+For details under the hood, please see `this section <https://lexicalrichness.readthedocs.io/en/latest/#details-of-lexical-richness-measures>`_
+this section in the docs (or `see here <https://www.lucasshen.com/software/lexicalrichness/doc#details-of-lexical-richness-measures>`_).
 
 	    
 8. Example use cases
