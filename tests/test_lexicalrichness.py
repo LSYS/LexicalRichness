@@ -5,15 +5,19 @@
 
 
 import unittest
-from lexicalrichness.lexicalrichness import LexicalRichness
-from lexicalrichness.lexicalrichness import preprocess
-from lexicalrichness.lexicalrichness import tokenize
-from lexicalrichness.lexicalrichness import list_sliding_window
-from lexicalrichness.lexicalrichness import segment_generator
-from lexicalrichness.lexicalrichness import ttr_nd
-import pytest
-import numpy as np
+
 import matplotlib
+import numpy as np
+import pytest
+
+from lexicalrichness.lexicalrichness import (
+    LexicalRichness,
+    list_sliding_window,
+    preprocess,
+    segment_generator,
+    tokenize,
+    ttr_nd,
+)
 
 
 class TestLexicalrichness(unittest.TestCase):
@@ -248,6 +252,7 @@ class TestLexicalrichness(unittest.TestCase):
             str(err.value)
             == "Number of tokens in text smaller than number of tokens to sample."
         )
+
 
 if __name__ == "__main__":
     unittest.main()
