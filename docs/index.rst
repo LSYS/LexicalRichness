@@ -4,12 +4,26 @@
    contain the root `toctree` directive.
 
 .. toctree::
-   :maxdepth: 2
+    :caption: Readme:
+    :maxdepth: 1
+
+    README
+
+.. toctree::
+    :caption: Appendix:
+    :maxdepth: 1
+
+    details
+    docstring_docs  
+    license
 
 .. include:: usefullinks.rst
-
-.. include:: ../README.rst
-
+.. include:: README.rst
+.. include:: contributors.rst
 .. include:: details.rst
-
 .. include:: docstring_docs.rst
+
+=======
+License
+=======
+.. include:: LICENSE

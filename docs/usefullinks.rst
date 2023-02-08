@@ -29,7 +29,7 @@ Useful Links
 
 .. |rtfd-alt| raw:: html
 
-	<a href="https://www.lucasshen.com/software/lexicalrichness/doc" target="_blank"><strong>Self-hosted Docs</strong></a> 
+	<a href="https://www.lucasshen.com/software/lexicalrichness/doc" target="_blank"><strong>Documentation (alt)</strong></a> 
 
 .. |binder-usefullink| raw:: html
 
