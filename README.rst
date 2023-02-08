@@ -3,7 +3,7 @@ LexicalRichness
 ===============
 |	|pypi| |conda-forge| |latest-release| |python-ver| 
 |	|ci-status| |rtfd| |maintained|
-|	|PRs| |codefactor| 
+|	|PRs| |codefactor| |isort|
 |	|license| |mybinder| |zenodo|
 
 `LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
@@ -469,3 +469,6 @@ License <https://opensource.org/licenses/MIT>`__.
 .. |rtfd| image:: https://readthedocs.org/projects/lexicalrichness/badge/?version=latest
     :target: https://lexicalrichness.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&amp;labelColor=ef8336
+	:target: https://pycqa.github.io/isort
+	:alt: Imports: isort
