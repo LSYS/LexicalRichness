@@ -426,7 +426,7 @@ this section in the docs (or `see here <https://www.lucasshen.com/software/lexic
    :target: https://github.com/lsys/lexicalrichness/graphs/contributors
 
 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. 
-See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
+See here for `how to contribute  <./docs//CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
