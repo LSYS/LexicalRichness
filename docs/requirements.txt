@@ -1,6 +1,6 @@
 sphinx-material
 sphinx-rtd-theme
 jupyter
-runpynb
+runpynb==0.1.4
 lexicalrichness
 nbsphinx
