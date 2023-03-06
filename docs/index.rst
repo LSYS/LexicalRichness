@@ -17,6 +17,9 @@
     details
     docstring_docs  
     
+=============================
+LexicalRichness Documentation
+=============================
 
 .. include:: usefullinks.rst
 .. include:: README.rst
