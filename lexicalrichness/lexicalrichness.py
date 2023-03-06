@@ -1,7 +1,4 @@
 #  -*-  coding:  utf-8  -*-
-
-from __future__ import division
-
 import sys
 
 if sys.version_info[0] == 3:
@@ -16,6 +13,7 @@ from math import log, sqrt
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from scipy.optimize import curve_fit
 from scipy.stats import hypergeom
 
@@ -165,6 +163,37 @@ def ttr_nd(N, D):
     return (D / N) * (np.sqrt(1 + 2 * (N / D)) - 1)
 
 
+# fmt: off
+def frequency_wordfrequency_table(bow):
+    """Get table of i frequency and number of terms that appear i times in text of length N. 
+    For Yule's I, Yule's K, and Simpson's D.
+    In the returned table, freq column indicates the number of frequency of appearance in 
+    the text. fv_i_N column indicates the number of terms in the text of length N that 
+    appears freq number of times.
+    
+    Parameters
+    ----------
+    bow: array-like
+        List of words
+    
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+    """
+
+    term_freq_dict = Counter(bow)
+    
+    freq_i_N = (pd.DataFrame.from_dict(term_freq_dict, orient='index')
+                .reset_index()
+                .rename(columns={0:'freq'})
+                .groupby('freq').size().reset_index()
+                .rename(columns={0:'fv_i_N'})
+                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq) )
+                )
+
+    return freq_i_N
+
+# fmt: on
 class LexicalRichness(object):
     """Object containing tokenized text and methods to compute Lexical Richness (also known as
     Lexical Diversity or Vocabulary Diversity.)
@@ -321,6 +350,95 @@ class LexicalRichness(object):
             Maas
         """
         return (log(self.words) - log(self.terms)) / (log(self.words) ** 2)
+
+    @property
+    def yulek(self):
+        """Yule's K (Yule 1944, Tweedie and Baayen 1998).
+
+        .. math::
+            k = 10^4 \\times \\left\\{\\sum_{i=1}^n f(i,N) \\left(\\frac{i}{N}\\right)^2 -\\frac{1}{N} \\right\\}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Yule's K
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        total_sum = freq_i_N.sum_element.sum()
+        k = (10**4) * (total_sum / self.words**2 - 1 / self.words)
+        return k
+
+    @property
+    def yulei(self):
+        """Yule's I (Yule 1944).
+
+        .. math::
+            I = \\frac{t^2}{\\sum^{n_{\\text{max}}}_{i=1} i^2f(i,w) - t}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Yule's I
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        total_sum = freq_i_N.sum_element.sum()
+        i = self.terms**2 / (total_sum - self.terms)
+        return i
+
+    @property
+    def herdanvm(self):
+        """Herdan's Vm (Herdan 1955, Tweedie and Baayen 1998)
+
+        .. math::
+            V_m = \\sqrt{\\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\left(\\frac{i}{w} \\right)^2 - \\frac{1}{w}}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Herdan's Vm
+        """
+        tab = frequency_wordfrequency_table(self.wordlist)
+        tab["sum_element"] = tab.fv_i_N * (tab.freq / self.words) ** 2
+        vm = np.sqrt(tab.sum_element.sum() - (1 / self.terms))
+        return vm
+
+    @property
+    def simpsond(self):
+        """Simpson's D (Simpson 1949, Tweedie and Baayen 1998)
+
+        .. math::
+            D = \\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\frac{i}{w}\\frac{i-1}{w-1}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Simpson's D
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        freq_i_N["sum_element"] = freq_i_N.fv_i_N * freq_i_N.freq * (freq_i_N.freq - 1)
+        total_sum = freq_i_N.sum_element.sum()
+        d = total_sum / (self.words * (self.words - 1))
+        return d
 
     # Lexical richness measures as methods
     def msttr(self, segment_window=100, discard=True):
