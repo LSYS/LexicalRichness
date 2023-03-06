@@ -14,12 +14,13 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
+
 # sys.path.insert(0, os.path.abspath('..'))  # Source code dir relative to this file
 
 # -- Project information -----------------------------------------------------
 
 project = 'LexicalRichness'
-copyright = '2022, Lucas Shen'
+copyright = '2023, Lucas Shen'
 author = 'Lucas Shen'
 
 
@@ -33,6 +34,8 @@ extensions = [
 	'sphinx.ext.autodoc',
 	'sphinx.ext.duration',
 	'sphinx.ext.napoleon',
+    'sphinx_copybutton',
+	'nbsphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,7 +55,36 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'sphinx_material'
 # html_theme = 'sphinx_rtd_theme'
 
+# Material theme options (see theme.conf for more information)
+html_theme_options = {
+    # Set the name of the project to appear in the navigation.
+    'nav_title': 'LexicalRichness',
+
+    # Set the repo location to get a badge with stats
+    'repo_url': 'https://github.com/lsys/LexicalRichness',
+    'repo_name': 'LexicalRichness',
+    'repo_type': 'github',
+
+    # Visible levels of the global TOC; -1 means unlimited
+    'globaltoc_depth': 1,
+    # If False, expand all TOC entries
+    'globaltoc_collapse': False,
+    # If True, show hidden TOC entries
+    'globaltoc_includehidden': False,
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# You must explicitly include globaltoc.html in html_sidebars if you want the toc to show up.
+# https://bashtage.github.io/sphinx-material/customization.html#sidebars
+html_sidebars = {
+    "**": [
+    "logo-text.html", 
+    "globaltoc.html", 
+    "localtoc.html", 
+    "searchbox.html",
+    ]
+}

@@ -1,22 +1,21 @@
 #  -*-  coding:  utf-8  -*-
-
-from __future__ import division
-
 import sys
 
 if sys.version_info[0] == 3:
     from statistics import mean
 
-from collections import Counter
-from itertools import islice
+import random
 import re
 import string
-from math import sqrt, log
-import numpy as np
-from scipy.stats import hypergeom
-from scipy.optimize import curve_fit
-import random
+from collections import Counter
+from itertools import islice
+from math import log, sqrt
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy.optimize import curve_fit
+from scipy.stats import hypergeom
 
 try:
     from textblob import TextBlob
@@ -164,6 +163,37 @@ def ttr_nd(N, D):
     return (D / N) * (np.sqrt(1 + 2 * (N / D)) - 1)
 
 
+# fmt: off
+def frequency_wordfrequency_table(bow):
+    """Get table of i frequency and number of terms that appear i times in text of length N. 
+    For Yule's I, Yule's K, and Simpson's D.
+    In the returned table, freq column indicates the number of frequency of appearance in 
+    the text. fv_i_N column indicates the number of terms in the text of length N that 
+    appears freq number of times.
+    
+    Parameters
+    ----------
+    bow: array-like
+        List of words
+    
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+    """
+
+    term_freq_dict = Counter(bow)
+    
+    freq_i_N = (pd.DataFrame.from_dict(term_freq_dict, orient='index')
+                .reset_index()
+                .rename(columns={0:'freq'})
+                .groupby('freq').size().reset_index()
+                .rename(columns={0:'fv_i_N'})
+                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq) )
+                )
+
+    return freq_i_N
+
+# fmt: on
 class LexicalRichness(object):
     """Object containing tokenized text and methods to compute Lexical Richness (also known as
     Lexical Diversity or Vocabulary Diversity.)
@@ -320,6 +350,95 @@ class LexicalRichness(object):
             Maas
         """
         return (log(self.words) - log(self.terms)) / (log(self.words) ** 2)
+
+    @property
+    def yulek(self):
+        """Yule's K (Yule 1944, Tweedie and Baayen 1998).
+
+        .. math::
+            k = 10^4 \\times \\left\\{\\sum_{i=1}^n f(i,N) \\left(\\frac{i}{N}\\right)^2 -\\frac{1}{N} \\right\\}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Yule's K
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        total_sum = freq_i_N.sum_element.sum()
+        k = (10**4) * (total_sum / self.words**2 - 1 / self.words)
+        return k
+
+    @property
+    def yulei(self):
+        """Yule's I (Yule 1944).
+
+        .. math::
+            I = \\frac{t^2}{\\sum^{n_{\\text{max}}}_{i=1} i^2f(i,w) - t}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Yule's I
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        total_sum = freq_i_N.sum_element.sum()
+        i = self.terms**2 / (total_sum - self.terms)
+        return i
+
+    @property
+    def herdanvm(self):
+        """Herdan's Vm (Herdan 1955, Tweedie and Baayen 1998)
+
+        .. math::
+            V_m = \\sqrt{\\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\left(\\frac{i}{w} \\right)^2 - \\frac{1}{w}}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Herdan's Vm
+        """
+        tab = frequency_wordfrequency_table(self.wordlist)
+        tab["sum_element"] = tab.fv_i_N * (tab.freq / self.words) ** 2
+        vm = np.sqrt(tab.sum_element.sum() - (1 / self.terms))
+        return vm
+
+    @property
+    def simpsond(self):
+        """Simpson's D (Simpson 1949, Tweedie and Baayen 1998)
+
+        .. math::
+            D = \\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\frac{i}{w}\\frac{i-1}{w-1}
+
+        See Also
+        --------
+        frequency_wordfrequency_table:
+            Get table of i frequency and number of terms that appear i times in text of length N.
+
+        Returns
+        -------
+        Float
+            Simpson's D
+        """
+        freq_i_N = frequency_wordfrequency_table(self.wordlist)
+        freq_i_N["sum_element"] = freq_i_N.fv_i_N * freq_i_N.freq * (freq_i_N.freq - 1)
+        total_sum = freq_i_N.sum_element.sum()
+        d = total_sum / (self.words * (self.words - 1))
+        return d
 
     # Lexical richness measures as methods
     def msttr(self, segment_window=100, discard=True):
@@ -626,39 +745,39 @@ class LexicalRichness(object):
         title="",
         savepath=None,
     ):
-        """ Plots the empirical function of TTR to word sampling and the best-fitting curve in the 
-            vocd measure. Vocd is meant as a measure of lexical diversity robust to varying text lengths. 
-            See also vocd and hdd.
+        """Plots the empirical function of TTR to word sampling and the best-fitting curve in the
+        vocd measure. Vocd is meant as a measure of lexical diversity robust to varying text lengths.
+        See also vocd and hdd.
 
-            The horizontal axis is the token/word size of the random samplings (e.g. token size=50 means 
-            that each of the 100 samples consists of 50 words).
-            The vertical axis is the mean TTR score from the 100 samples computed in 2 steps as follows. 
-            First, take 100 random samples of 35 words from the text. Compute the mean TTR from the 100 
-            samples. Second, repeat this procedure for samples of 36 words, 37 words, and so on, all the 
-            way to ntokens (recommended as 50 [default]).
+        The horizontal axis is the token/word size of the random samplings (e.g. token size=50 means
+        that each of the 100 samples consists of 50 words).
+        The vertical axis is the mean TTR score from the 100 samples computed in 2 steps as follows.
+        First, take 100 random samples of 35 words from the text. Compute the mean TTR from the 100
+        samples. Second, repeat this procedure for samples of 36 words, 37 words, and so on, all the
+        way to ntokens (recommended as 50 [default]).
 
-            Helper Function
-            ---------------
-            ttr_nd 
-                TTR as a function of latent lexical diversity (d) and text length (n).
+        Helper Function
+        ---------------
+        ttr_nd
+            TTR as a function of latent lexical diversity (d) and text length (n).
 
-            Parameters
-            ----------
-            ntokens: int
-                Maximum number for the token/word size in the random samplings (default=50).
-            within_sample: int
-                Number of samples for each token/word size (default=100).
-            iterations: int
-                Number of times to repeat steps 1 to 3 before averaging (default=3).
-            seed: int
-                Seed for the pseudo-random number generator in ramdom.sample() (default=42).
-            return_data: boolean
-                If True, returns a tuple (figure, xvalues, empirical_TTR, fitted_TTR). Default is False.
-                xvalues, empirical_TTR, and fitted_TTR are lists of numbers.
+        Parameters
+        ----------
+        ntokens: int
+            Maximum number for the token/word size in the random samplings (default=50).
+        within_sample: int
+            Number of samples for each token/word size (default=100).
+        iterations: int
+            Number of times to repeat steps 1 to 3 before averaging (default=3).
+        seed: int
+            Seed for the pseudo-random number generator in ramdom.sample() (default=42).
+        return_data: boolean
+            If True, returns a tuple (figure, xvalues, empirical_TTR, fitted_TTR). Default is False.
+            xvalues, empirical_TTR, and fitted_TTR are lists of numbers.
 
-            Returns
-            -------
-            matplotlib.figure.Figure            
+        Returns
+        -------
+        matplotlib.figure.Figure
         """
         try:
             assert self.words > ntokens
@@ -712,16 +831,20 @@ class LexicalRichness(object):
         plt.ylabel(ylabel, fontweight="bold", loc="top", size=12)
         plt.title(title, fontweight="bold", loc="left", size=12)
         plt.legend(
-            loc="best", fontsize=11, frameon=False, fancybox=True, framealpha=0.8,
+            loc="best",
+            fontsize=11,
+            frameon=False,
+            fancybox=True,
+            framealpha=0.8,
         )
         if savepath:
-            plt.savefig(savepath, dpi='figure', bbox_inches='tight')
+            plt.savefig(savepath, dpi="figure", bbox_inches="tight")
 
         if return_data:
             return ax, xdata, ydata, list(ttr_nd(xdata, popt))
         else:
             return ax
-            
+
     def __str__(self):
         return " ".join(self.wordlist)
 

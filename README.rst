@@ -3,7 +3,7 @@ LexicalRichness
 ===============
 |	|pypi| |conda-forge| |latest-release| |python-ver| 
 |	|ci-status| |rtfd| |maintained|
-|	|PRs| |codefactor| 
+|	|PRs| |codefactor| |isort|
 |	|license| |mybinder| |zenodo|
 
 `LexicalRichness <https://github.com/lsys/lexicalrichness>`__ is a small Python module to compute textual lexical richness (aka lexical diversity) measures.
@@ -127,10 +127,6 @@ Try the package on the cloud (without setting anything up on your local machine)
 	0.7468703323966486
 	
 	# Return voc-D measure.
-	>>> lex.vocd()
-	46.27679899103406
-
-	# Return voc-D score of lexical richness.
 	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
 	46.27679899103406
 
@@ -149,6 +145,23 @@ Try the package on the cloud (without setting anything up on your local machine)
 	# Return Maas's lexical diversity measure.
 	>>> lex.Maas
 	0.023215679867353005
+
+	# Return Yule's K.
+	>>> lex.yulek
+	153.8935056940597
+
+	# Return Yule's I.
+	>>> lex.yulei
+	22.36764705882353
+	
+	# Return Herdan's Vm.
+	>>> lex.herdanvm
+	0.08539428890448784
+
+	# Return Simpson's D.
+	>>> lex.simpsond
+	0.015664160401002505
+
 	
 3. Use LexicalRichness in your own pipeline
 -------------------------------------------
@@ -221,11 +234,19 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 +-------------------------+-----------------------------------------------------------------------------------+
 | ``Herdan`` 	          | log(t) / log(w) (Herdan 1960, 1964)                                               |
 +-------------------------+-----------------------------------------------------------------------------------+
-| ``Summer``    	  | log(log(t)) / log(log(w)) Summer (1966)                                           |
+| ``Summer``    	  | log(log(t)) / log(log(w)) (Summer 1966)                                           |
 +-------------------------+-----------------------------------------------------------------------------------+
-| ``Dugast``          	  | (log(w) ** 2) / (log(w) - log(t) Dugast (1978)				      |
+| ``Dugast``          	  | (log(w) ** 2) / (log(w) - log(t) (Dugast 1978)				      |
 +-------------------------+-----------------------------------------------------------------------------------+
-| ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) Maas (1972)                                     |
+| ``Maas`` 	          | (log(w) - log(t)) / (log(w) ** 2) (Maas 1972)                                     |
++-------------------------+-----------------------------------------------------------------------------------+
+| ``yulek``	          | Yule's K (Yule 1944, Tweedie and Baayen 1998)                                     |
++-------------------------+-----------------------------------------------------------------------------------+
+| ``yulei``	          | Yule's I (Yule 1944, Tweedie and Baayen 1998)                                     |
++-------------------------+-----------------------------------------------------------------------------------+
+| ``herdanvm``	          | Herdan's Vm (Herdan 1955, Tweedie and Baayen 1998)                                |
++-------------------------+-----------------------------------------------------------------------------------+
+| ``simpsond``	          | Simpson's D (Simpson 1949, Tweedie and Baayen 1998)                               |
 +-------------------------+-----------------------------------------------------------------------------------+
 
 6. Methods
@@ -256,7 +277,7 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 	)
 
 .. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
-
+	:width: 450
 
 
 **Assessing method docstrings**
@@ -401,7 +422,7 @@ this section in the docs (or `see here <https://www.lucasshen.com/software/lexic
    :target: https://github.com/lsys/lexicalrichness/graphs/contributors
 
 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. 
-See here for `how to contribute  <./CONTRIBUTING.rst>`__ to this project.
+See here for `how to contribute  <./docs//CONTRIBUTING.rst>`__ to this project.
 See here for `Contributor Code of
 Conduct <http://contributor-covenant.org/version/1/0/0/>`__.
 
@@ -469,3 +490,6 @@ License <https://opensource.org/licenses/MIT>`__.
 .. |rtfd| image:: https://readthedocs.org/projects/lexicalrichness/badge/?version=latest
     :target: https://lexicalrichness.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&amp;labelColor=ef8336
+	:target: https://pycqa.github.io/isort
+	:alt: Imports: isort

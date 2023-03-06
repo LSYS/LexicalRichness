@@ -3,14 +3,10 @@
 
 """The setup script."""
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("README.rst") as readme_file:
     readme = readme_file.read()
-
-with open("HISTORY.rst") as history_file:
-    history = history_file.read()
-
 
 requirements = ["scipy>=1.0.0", "textblob>=0.15.3", "pandas", "scipy", "matplotlib"]
 
@@ -56,6 +52,6 @@ setup(
     name="lexicalrichness",
     packages=find_packages(include=["lexicalrichness"]),
     url="https://github.com/LSYS/lexicalrichness",
-    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.4.1.tar.gz",
-    version="0.4.1",
+    download_url="https://github.com/LSYS/LexicalRichness/archive/refs/tags/v0.5.0.tar.gz",
+    version="0.5.0",
 )

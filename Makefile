@@ -17,6 +17,7 @@ test:
 lint: # Check with mypy, pyflakes, black
 lint: 
 	@echo "+ $@"
+	isort .
 	black setup.py $(BLACK_OPTS)
 	black lexicalrichness/lexicalrichness.py
 	black tests/test_lexicalrichness.py

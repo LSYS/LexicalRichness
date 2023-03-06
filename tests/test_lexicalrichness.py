@@ -5,15 +5,20 @@
 
 
 import unittest
-from lexicalrichness.lexicalrichness import LexicalRichness
-from lexicalrichness.lexicalrichness import preprocess
-from lexicalrichness.lexicalrichness import tokenize
-from lexicalrichness.lexicalrichness import list_sliding_window
-from lexicalrichness.lexicalrichness import segment_generator
-from lexicalrichness.lexicalrichness import ttr_nd
-import pytest
-import numpy as np
+
 import matplotlib
+import numpy as np
+import pytest
+
+from lexicalrichness.lexicalrichness import (
+    LexicalRichness,
+    frequency_wordfrequency_table,
+    list_sliding_window,
+    preprocess,
+    segment_generator,
+    tokenize,
+    ttr_nd,
+)
 
 
 class TestLexicalrichness(unittest.TestCase):
@@ -167,6 +172,22 @@ class TestLexicalrichness(unittest.TestCase):
         print("testing Maas")
         self.assertEqual(self.obj1.Maas, 0.04208748389057132)
 
+    def test_yulek(self):
+        print("testing Yule's K")
+        self.assertEqual(self.obj1.yulek, 600.0)
+
+    def test_yulei(self):
+        print("testing Yule's I")
+        self.assertEqual(self.obj1.yulei, 8.0)
+
+    def test_herdanvm(self):
+        print("testing Herdan's Vm")
+        self.assertEqual(self.obj1.herdanvm, 0.18708286933869708)
+
+    def test_simpsond(self):
+        print("testing Simpson's D")
+        self.assertEqual(self.obj1.simpsond, 0.06666666666666667)
+
     def test_msttr(self):
         print("testing msttr")
 
@@ -248,6 +269,15 @@ class TestLexicalrichness(unittest.TestCase):
             str(err.value)
             == "Number of tokens in text smaller than number of tokens to sample."
         )
+
+    def test_frequency_wordfrequency_table(self):
+        tab = frequency_wordfrequency_table(self.longtext.wordlist)
+        assert tab.shape[1] == 3
+        assert tab.columns.tolist() == ["freq", "fv_i_N", "sum_element"]
+        assert tab.freq.min() >= 0
+        assert tab.fv_i_N.min() >= 0
+        assert tab.sum_element.min() >= 0
+
 
 if __name__ == "__main__":
     unittest.main()
