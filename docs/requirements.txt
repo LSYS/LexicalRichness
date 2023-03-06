@@ -4,3 +4,4 @@ jupyter
 runpynb==0.1.4
 lexicalrichness
 nbsphinx
+sphinx-copybutton
