@@ -127,10 +127,6 @@ Try the package on the cloud (without setting anything up on your local machine)
 	0.7468703323966486
 	
 	# Return voc-D measure.
-	>>> lex.vocd()
-	46.27679899103406
-
-	# Return voc-D score of lexical richness.
 	>>> lex.vocd(ntokens=50, within_sample=100, iterations=3)
 	46.27679899103406
 
@@ -281,7 +277,7 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 	)
 
 .. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
-
+	:width: 450
 
 
 **Assessing method docstrings**
