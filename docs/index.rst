@@ -13,17 +13,13 @@
     :caption: Appendix:
     :maxdepth: 1
 
+    example.ipynb
     details
     docstring_docs  
-    license
+    
 
 .. include:: usefullinks.rst
 .. include:: README.rst
 .. include:: contributors.rst
 .. include:: details.rst
 .. include:: docstring_docs.rst
-
-=======
-License
-=======
-.. include:: LICENSE
