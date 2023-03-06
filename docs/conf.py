@@ -48,6 +48,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
+html_title = ""
+html_short_title = "LexicalRichness Documentation"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
