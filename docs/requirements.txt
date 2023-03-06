@@ -3,3 +3,4 @@ sphinx-rtd-theme
 jupyter
 runpynb
 lexicalrichness
+nbsphinx
