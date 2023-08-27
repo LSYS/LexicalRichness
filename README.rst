@@ -276,7 +276,7 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 	    seed=42,  # Seed for reproducibility
 	)
 
-.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
+.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/main/docs/images/vocd.png
 	:width: 450
 
 
