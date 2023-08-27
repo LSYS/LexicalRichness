@@ -1,3 +1,4 @@
+"""LexicalRichness module."""
 #  -*-  coding:  utf-8  -*-
 import sys
 
@@ -39,7 +40,9 @@ else:
 
 
 def preprocess(text):
-    """1. lower case
+    """Preprocess text (minimal).
+
+    1. lower case
     2. removes digits
     3. removes variations of dashes and hyphens
 
@@ -104,8 +107,9 @@ def segment_generator(List, segment_size):
 
 
 def list_sliding_window(sequence, window_size=2):
-    """Returns a sliding window generator (of size window_size) over a sequence. Taken from
-    https://docs.python.org/release/2.3.5/lib/itertools-example.html
+    """Return a sliding window generator (of size window_size) over a sequence.
+
+    Taken from https://docs.python.org/release/2.3.5/lib/itertools-example.html.
 
     Example:
 
@@ -143,8 +147,8 @@ def list_sliding_window(sequence, window_size=2):
 
 
 def ttr_nd(N, D):
-    """McKee, Mavern, and Richard 2000's formulation of how the type token ratio (TTR) depends
-    on the number of tokens (N) and a parameter D (a construct of the unobserved lexical diversity).
+    """McKee, Mavern, and Richard 2000's formulation of how the type token ratio (TTR) depends on the number of tokens (N) and a parameter D (a construct of the unobserved lexical diversity).
+    
     Predicted values of D is in the order of 10 to 100.
 
     Directly referenced from McKee, Mavern, and Richard 2000.
@@ -166,7 +170,9 @@ def ttr_nd(N, D):
 # fmt: off
 def frequency_wordfrequency_table(bow):
     """Get table of i frequency and number of terms that appear i times in text of length N.
+
     For Yule's I, Yule's K, and Simpson's D.
+    
     In the returned table, freq column indicates the number of frequency of appearance in
     the text. fv_i_N column indicates the number of terms in the text of length N that
     appears freq number of times.
@@ -180,7 +186,6 @@ def frequency_wordfrequency_table(bow):
     -------
     pandas.core.frame.DataFrame
     """
-
     term_freq_dict = Counter(bow)
 
     freq_i_N = (pd.DataFrame.from_dict(term_freq_dict, orient='index')
@@ -195,8 +200,7 @@ def frequency_wordfrequency_table(bow):
 
 # fmt: on
 class LexicalRichness(object):
-    """Object containing tokenized text and methods to compute Lexical Richness (also known as
-    Lexical Diversity or Vocabulary Diversity.)
+    """Object containing tokenized text and methods to compute Lexical Richness (also known as Lexical Diversity or Vocabulary Diversity).
     """
 
     def __init__(self, text, preprocessor=preprocess, tokenizer=tokenize):
@@ -355,9 +359,6 @@ class LexicalRichness(object):
     def yulek(self):
         """Yule's K (Yule 1944, Tweedie and Baayen 1998).
 
-        .. math::
-            k = 10^4 \\times \\left\\{\\sum_{i=1}^n f(i,N) \\left(\\frac{i}{N}\\right)^2 -\\frac{1}{N} \\right\\}
-
         See Also
         --------
         frequency_wordfrequency_table:
@@ -376,9 +377,6 @@ class LexicalRichness(object):
     @property
     def yulei(self):
         """Yule's I (Yule 1944).
-
-        .. math::
-            I = \\frac{t^2}{\\sum^{n_{\\text{max}}}_{i=1} i^2f(i,w) - t}
 
         See Also
         --------
@@ -399,9 +397,6 @@ class LexicalRichness(object):
     def herdanvm(self):
         """Herdan's Vm (Herdan 1955, Tweedie and Baayen 1998)
 
-        .. math::
-            V_m = \\sqrt{\\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\left(\\frac{i}{w} \\right)^2 - \\frac{1}{w}}
-
         See Also
         --------
         frequency_wordfrequency_table:
@@ -420,9 +415,6 @@ class LexicalRichness(object):
     @property
     def simpsond(self):
         """Simpson's D (Simpson 1949, Tweedie and Baayen 1998)
-
-        .. math::
-            D = \\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\frac{i}{w}\\frac{i-1}{w-1}
 
         See Also
         --------
