@@ -100,7 +100,7 @@ def segment_generator(List, segment_size):
         List of s lists of with r items in each list.
     """
     for i in range(0, len(List), segment_size):
-        yield List[i : i + segment_size]
+        yield List[i: i + segment_size]
 
 
 def list_sliding_window(sequence, window_size=2):
@@ -165,30 +165,30 @@ def ttr_nd(N, D):
 
 # fmt: off
 def frequency_wordfrequency_table(bow):
-    """Get table of i frequency and number of terms that appear i times in text of length N. 
+    """Get table of i frequency and number of terms that appear i times in text of length N.
     For Yule's I, Yule's K, and Simpson's D.
-    In the returned table, freq column indicates the number of frequency of appearance in 
-    the text. fv_i_N column indicates the number of terms in the text of length N that 
+    In the returned table, freq column indicates the number of frequency of appearance in
+    the text. fv_i_N column indicates the number of terms in the text of length N that
     appears freq number of times.
-    
+
     Parameters
     ----------
     bow: array-like
         List of words
-    
+
     Returns
     -------
     pandas.core.frame.DataFrame
     """
 
     term_freq_dict = Counter(bow)
-    
+
     freq_i_N = (pd.DataFrame.from_dict(term_freq_dict, orient='index')
                 .reset_index()
-                .rename(columns={0:'freq'})
+                .rename(columns={0: 'freq'})
                 .groupby('freq').size().reset_index()
-                .rename(columns={0:'fv_i_N'})
-                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq) )
+                .rename(columns={0: 'fv_i_N'})
+                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq))
                 )
 
     return freq_i_N
@@ -473,7 +473,7 @@ class LexicalRichness(object):
                 )
             )
 
-        if segment_window < 1 or type(segment_window) is float:
+        if segment_window < 1 or isinstance(segment_window, float):
             raise ValueError("Window size must be a positive integer.")
 
         scores = list()
@@ -520,7 +520,7 @@ class LexicalRichness(object):
                 )
             )
 
-        if window_size < 1 or type(window_size) is float:
+        if window_size < 1 or isinstance(window_size, float):
             raise ValueError("Window size must be a positive integer.")
 
         scores = [
@@ -642,7 +642,7 @@ class LexicalRichness(object):
                     self.words, suggestion
                 )
             )
-        if draws < 1 or type(draws) is float:
+        if draws < 1 or isinstance(draws, float):
             raise ValueError(
                 "Number of draws must be a positive integer. E.g. hdd(draws={})".format(
                     suggestion
@@ -653,7 +653,7 @@ class LexicalRichness(object):
 
         term_contributions = [
             (1 - hypergeom.pmf(0, self.words, freq, draws)) / draws
-            for term, freq in term_freq.items()
+            for _, freq in term_freq.items()
         ]
 
         return sum(term_contributions)
@@ -711,7 +711,7 @@ class LexicalRichness(object):
             mean_ttr_results = []
             for ntoken in range(35, 1 + ntokens):
                 ttr_results = []
-                for _ in range(100):
+                for _ in range(within_sample):
                     sample_of_tokens = random.sample(self.wordlist, k=ntoken)
                     n_unique = len(set(sample_of_tokens))
                     ttr = n_unique / ntoken
@@ -790,7 +790,7 @@ class LexicalRichness(object):
         ydata = []
         for ntoken in range(35, 1 + ntokens):
             ttr_results = []
-            for _ in range(100):
+            for _ in range(within_sample):
                 sample_of_tokens = random.sample(self.wordlist, k=ntoken)
 
                 n_unique = len(set(sample_of_tokens))
