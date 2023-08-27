@@ -12,6 +12,7 @@ Contributors
 * `Christophe Bedetti <https://github.com/cbedetti>`_
 * `Garrett Hurst <https://github.com/g-hurst>`_
 * `Sreetama2001 <https://github.com/Sreetama2001>`_
-* `Earl Brown <https://github.com/Sreetama2001>`_
+* `Earl Brown <https://github.com/ekbrown>`_
+* `Xhuliano Brace <https://github.com/xhulianoThe1>`_
 
 (See the `Contributors <https://github.com/LSYS/LexicalRichness/graphs/contributors>`_ page)
