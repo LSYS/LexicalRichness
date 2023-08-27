@@ -5,6 +5,6 @@
 __title__ = 'lexicalrichness'
 __author__ = """Lucas Shen YS"""
 __email__ = 'lucas@lucasshen.com'
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 
 from .lexicalrichness import *

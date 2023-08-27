@@ -1,9 +1,11 @@
 TTR = \frac{t}{w}
+https://latex.codecogs.com/svg.image?\bg{white}TTR&space;=&space;\frac{t}{w}
 
 RTTR = \frac{t}{\sqrt{w}}
+https://latex.codecogs.com/svg.image?\bg{white}RTTR&space;=&space;\frac{t}{\sqrt{w}}
 
 CTTR = \frac{t}{2\sqrt{w}}
-https://latex.codecogs.com/svg.image?\bg{white}CTTR&space;=&space;\frac{t}{2\sqrt{w}}
+https://latex.codecogs.com/svg.image?\bg{white}CTTR&space;=&space;\frac{t}{\sqrt{2w}}
 
 \text{Herdan} = \frac{log(t)}{log(w)} 
 https://latex.codecogs.com/svg.image?\bg{white}\text{Herdan}&space;=&space;\frac{log(t)}{log(w)}&space;

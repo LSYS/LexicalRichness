@@ -46,25 +46,30 @@ This addendum exposes the underlying `lexicalrichness` measures from attributes 
 .. autofunction:: lexicalrichness.LexicalRichness.Maas
 ----
 
+
 **yulek**: Yule's K (*Yule 1944, Tweedie and Baayen 1998*)
 
 .. autofunction:: lexicalrichness.LexicalRichness.yulek
 ----
+
 
 **yulei**: Yule's I (*Yule 1944, Tweedie and Baayen 1998*)
 
 .. autofunction:: lexicalrichness.LexicalRichness.yulei
 ----
 
+
 **Herdan's Vm** (Herdan 1955, Tweedie and Baayen 1998)
 
 .. autofunction:: lexicalrichness.LexicalRichness.herdanvm
 ----
 
+
 **Simpson's D** (Simpson 1949, Tweedie and Baayen 1998)
 
 .. autofunction:: lexicalrichness.LexicalRichness.simpsond
 ----
+
 
 **msttr**: Mean Segmental Type-Token Ratio (*Johnson 1944*)
 

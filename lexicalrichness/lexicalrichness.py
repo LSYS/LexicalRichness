@@ -1,3 +1,4 @@
+"""LexicalRichness module."""
 #  -*-  coding:  utf-8  -*-
 import sys
 
@@ -39,7 +40,9 @@ else:
 
 
 def preprocess(text):
-    """1. lower case
+    """Preprocess text (minimal).
+
+    1. lower case
     2. removes digits
     3. removes variations of dashes and hyphens
 
@@ -100,12 +103,13 @@ def segment_generator(List, segment_size):
         List of s lists of with r items in each list.
     """
     for i in range(0, len(List), segment_size):
-        yield List[i : i + segment_size]
+        yield List[i: i + segment_size]
 
 
 def list_sliding_window(sequence, window_size=2):
-    """Returns a sliding window generator (of size window_size) over a sequence. Taken from
-    https://docs.python.org/release/2.3.5/lib/itertools-example.html
+    """Return a sliding window generator (of size window_size) over a sequence.
+
+    Taken from https://docs.python.org/release/2.3.5/lib/itertools-example.html.
 
     Example:
 
@@ -143,8 +147,8 @@ def list_sliding_window(sequence, window_size=2):
 
 
 def ttr_nd(N, D):
-    """McKee, Mavern, and Richard 2000's formulation of how the type token ratio (TTR) depends
-    on the number of tokens (N) and a parameter D (a construct of the unobserved lexical diversity).
+    """McKee, Mavern, and Richard 2000's formulation of how the type token ratio (TTR) depends on the number of tokens (N) and a parameter D (a construct of the unobserved lexical diversity).
+    
     Predicted values of D is in the order of 10 to 100.
 
     Directly referenced from McKee, Mavern, and Richard 2000.
@@ -165,38 +169,38 @@ def ttr_nd(N, D):
 
 # fmt: off
 def frequency_wordfrequency_table(bow):
-    """Get table of i frequency and number of terms that appear i times in text of length N. 
+    """Get table of i frequency and number of terms that appear i times in text of length N.
+
     For Yule's I, Yule's K, and Simpson's D.
-    In the returned table, freq column indicates the number of frequency of appearance in 
-    the text. fv_i_N column indicates the number of terms in the text of length N that 
-    appears freq number of times.
     
+    In the returned table, freq column indicates the number of frequency of appearance in
+    the text. fv_i_N column indicates the number of terms in the text of length N that
+    appears freq number of times.
+
     Parameters
     ----------
     bow: array-like
         List of words
-    
+
     Returns
     -------
     pandas.core.frame.DataFrame
     """
-
     term_freq_dict = Counter(bow)
-    
+
     freq_i_N = (pd.DataFrame.from_dict(term_freq_dict, orient='index')
                 .reset_index()
-                .rename(columns={0:'freq'})
+                .rename(columns={0: 'freq'})
                 .groupby('freq').size().reset_index()
-                .rename(columns={0:'fv_i_N'})
-                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq) )
+                .rename(columns={0: 'fv_i_N'})
+                .assign(sum_element=lambda df: df.fv_i_N * np.square(df.freq))
                 )
 
     return freq_i_N
 
 # fmt: on
 class LexicalRichness(object):
-    """Object containing tokenized text and methods to compute Lexical Richness (also known as
-    Lexical Diversity or Vocabulary Diversity.)
+    """Object containing tokenized text and methods to compute Lexical Richness (also known as Lexical Diversity or Vocabulary Diversity).
     """
 
     def __init__(self, text, preprocessor=preprocess, tokenizer=tokenize):
@@ -355,9 +359,6 @@ class LexicalRichness(object):
     def yulek(self):
         """Yule's K (Yule 1944, Tweedie and Baayen 1998).
 
-        .. math::
-            k = 10^4 \\times \\left\\{\\sum_{i=1}^n f(i,N) \\left(\\frac{i}{N}\\right)^2 -\\frac{1}{N} \\right\\}
-
         See Also
         --------
         frequency_wordfrequency_table:
@@ -376,9 +377,6 @@ class LexicalRichness(object):
     @property
     def yulei(self):
         """Yule's I (Yule 1944).
-
-        .. math::
-            I = \\frac{t^2}{\\sum^{n_{\\text{max}}}_{i=1} i^2f(i,w) - t}
 
         See Also
         --------
@@ -399,9 +397,6 @@ class LexicalRichness(object):
     def herdanvm(self):
         """Herdan's Vm (Herdan 1955, Tweedie and Baayen 1998)
 
-        .. math::
-            V_m = \\sqrt{\\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\left(\\frac{i}{w} \\right)^2 - \\frac{1}{w}}
-
         See Also
         --------
         frequency_wordfrequency_table:
@@ -420,9 +415,6 @@ class LexicalRichness(object):
     @property
     def simpsond(self):
         """Simpson's D (Simpson 1949, Tweedie and Baayen 1998)
-
-        .. math::
-            D = \\sum^{n_{\\text{max}}}_{i=1} f(i,w) \\frac{i}{w}\\frac{i-1}{w-1}
 
         See Also
         --------
@@ -473,7 +465,7 @@ class LexicalRichness(object):
                 )
             )
 
-        if segment_window < 1 or type(segment_window) is float:
+        if segment_window < 1 or isinstance(segment_window, float):
             raise ValueError("Window size must be a positive integer.")
 
         scores = list()
@@ -520,7 +512,7 @@ class LexicalRichness(object):
                 )
             )
 
-        if window_size < 1 or type(window_size) is float:
+        if window_size < 1 or isinstance(window_size, float):
             raise ValueError("Window size must be a positive integer.")
 
         scores = [
@@ -642,7 +634,7 @@ class LexicalRichness(object):
                     self.words, suggestion
                 )
             )
-        if draws < 1 or type(draws) is float:
+        if draws < 1 or isinstance(draws, float):
             raise ValueError(
                 "Number of draws must be a positive integer. E.g. hdd(draws={})".format(
                     suggestion
@@ -653,7 +645,7 @@ class LexicalRichness(object):
 
         term_contributions = [
             (1 - hypergeom.pmf(0, self.words, freq, draws)) / draws
-            for term, freq in term_freq.items()
+            for _, freq in term_freq.items()
         ]
 
         return sum(term_contributions)
@@ -711,7 +703,7 @@ class LexicalRichness(object):
             mean_ttr_results = []
             for ntoken in range(35, 1 + ntokens):
                 ttr_results = []
-                for _ in range(100):
+                for _ in range(within_sample):
                     sample_of_tokens = random.sample(self.wordlist, k=ntoken)
                     n_unique = len(set(sample_of_tokens))
                     ttr = n_unique / ntoken
@@ -790,7 +782,7 @@ class LexicalRichness(object):
         ydata = []
         for ntoken in range(35, 1 + ntokens):
             ttr_results = []
-            for _ in range(100):
+            for _ in range(within_sample):
                 sample_of_tokens = random.sample(self.wordlist, k=ntoken)
 
                 n_unique = len(set(sample_of_tokens))

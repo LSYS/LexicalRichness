@@ -276,7 +276,7 @@ Here's a minimal example using `lexicalrichness` with a `Pandas` `dataframe` wit
 	    seed=42,  # Seed for reproducibility
 	)
 
-.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/dev/docs/images/vocd.png
+.. image:: https://raw.githubusercontent.com/LSYS/LexicalRichness/master/docs/images/vocd.png
 	:width: 450
 
 
@@ -331,8 +331,7 @@ Alternatively, just do
 	    
 7. Formulation & Algorithmic Details
 ------------------------------------
-For details under the hood, please see `this section <https://lexicalrichness.readthedocs.io/en/latest/#details-of-lexical-richness-measures>`_
-this section in the docs (or `see here <https://www.lucasshen.com/software/lexicalrichness/doc#details-of-lexical-richness-measures>`_).
+For details under the hood, please see `this section <https://lexicalrichness.readthedocs.io/en/latest/#details-of-lexical-richness-measures>`_ in the docs (or `see here <https://www.lucasshen.com/software/lexicalrichness/doc#details-of-lexical-richness-measures>`_).
 
 	    
 8. Example use cases
@@ -349,12 +348,12 @@ this section in the docs (or `see here <https://www.lucasshen.com/software/lexic
 	.. code-block:: bib
 
 		@article{jacobs2021sentivent, 
-		title={SENTiVENT: enabling supervised information extraction of company-specific events in economic and financial news},
-		author={Jacobs, Gilles and Hoste, V{\'e}ronique},
-		journal={Language Resources and Evaluation},
-		pages={1--33},
-		year={2021},
-		publisher={Springer}
+			title={SENTiVENT: enabling supervised information extraction of company-specific events in economic and financial news},
+			author={Jacobs, Gilles and Hoste, V{\'e}ronique},
+			journal={Language Resources and Evaluation},
+			pages={1--33},
+			year={2021},
+			publisher={Springer}
 		}
 	
 	.. raw:: html
@@ -370,10 +369,10 @@ this section in the docs (or `see here <https://www.lucasshen.com/software/lexic
 	.. code-block:: bib
 
 		@techreport{accuracybias, 
-		title={Measuring Political Media Slant Using Text Data},
-		author={Shen, Lucas},
-		url={https://www.lucasshen.com/research/media.pdf},
-		year={2021}
+			title={Measuring Political Media Slant Using Text Data},
+			author={Shen, Lucas},
+			url={https://www.lucasshen.com/research/media.pdf},
+			year={2021}
 		}
 	
 	.. raw:: html    	    
@@ -438,12 +437,12 @@ Codebase:
 .. code-block:: bib
 
 	@misc{lex,
-	author = {Shen, Lucas},
-	doi = {10.5281/zenodo.6607007},
-	license = {MIT license},
-	title = {{LexicalRichness: A small module to compute textual lexical richness}},
-	url = {https://github.com/LSYS/lexicalrichness},
-	year = {2022}
+		author = {Shen, Lucas},
+		doi = {10.5281/zenodo.6607007},
+		license = {MIT license},
+		title = {{LexicalRichness: A small module to compute textual lexical richness}},
+		url = {https://github.com/LSYS/lexicalrichness},
+		year = {2022}
 	}
 
 Documentation on formulations and algorithms:
@@ -451,10 +450,10 @@ Documentation on formulations and algorithms:
 .. code-block:: bib
 
 	@misc{accuracybias, 
-	title={Measuring Political Media Slant Using Text Data},
-	author={Shen, Lucas},
-	url={https://www.lucasshen.com/research/media.pdf},
-	year={2021}
+		title={Measuring Political Media Slant Using Text Data},
+		author={Shen, Lucas},
+		url={https://www.lucasshen.com/research/media.pdf},
+		year={2021}
 	}
 
 The package is released under the `MIT
