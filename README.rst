@@ -359,20 +359,23 @@ For details under the hood, please see `this section <https://lexicalrichness.re
 	.. raw:: html
 
     
-* | `[2] <https://www.lucasshen.com/research/media.pdf>`_ **Measuring political media using text data.** This chapter of my thesis investigates whether political media bias manifests by coverage accuracy. As covaraites, I use characteristics of the text data (political speech and news article transcripts). One of the ways speeches can be characterized is via lexical richness.
-    
+* | `[2] <https://doi.org/10.1145/3787455>`_ **Shades of Neutrality: Detecting Media Slant in a Political Monopoly Using Quotation Accuracy.** This paper develops quotation accuracy as a dimension of media slant. As covariates, I use characteristics of the text data (political speech and news article transcripts), one of which is lexical richness. Published in *ACM Transactions on Intelligent Systems and Technology* (2026).
+
 	.. raw:: html
 
 	   <details>
-	   <summary><a>Shen, Lucas (2021). Measuring political media using text data [Click for metadata]</a></summary>
+	   <summary><a>Shen, Lucas (2026). Shades of Neutrality [Click for metadata]</a></summary>
 
 	.. code-block:: bib
 
-		@techreport{accuracybias, 
-			title={Measuring Political Media Slant Using Text Data},
-			author={Shen, Lucas},
-			url={https://www.lucasshen.com/research/media.pdf},
-			year={2021}
+		@article{shen2026shades,
+		title={Shades of Neutrality: Detecting Media Slant in a Political Monopoly Using Quotation Accuracy},
+		author={Shen, Lucas},
+		journal={ACM Transactions on Intelligent Systems and Technology},
+		year={2026},
+		publisher={Association for Computing Machinery},
+		doi={10.1145/3787455},
+		url={https://doi.org/10.1145/3787455}
 		}
 	
 	.. raw:: html    	    
@@ -393,8 +396,8 @@ For details under the hood, please see `this section <https://lexicalrichness.re
 	
 	.. raw:: html    
 
-* `[4] <https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books>`_ **German is more complicated than English** This study analyses a small sample of English books and compares them to their German translation. Within the sample, it can be observed that the German translations tend to be shorter in length, but contain more unique terms than their English counterparts. LexicalRichness was used to generate the statistics modeled within the study. 
-   
+* `[4] <https://github.com/g-hurst/Comparing-Properties-of-German-and-English-Books>`_ **German is more complicated than English** This study analyses a small sample of English books and compares them to their German translation. Within the sample, it can be observed that the German translations tend to be shorter in length, but contain more unique terms than their English counterparts. LexicalRichness was used to generate the statistics modeled within the study.
+
 	.. raw:: html
 
 	   <details>
@@ -449,11 +452,25 @@ Documentation on formulations and algorithms:
 
 .. code-block:: bib
 
-	@misc{accuracybias, 
-		title={Measuring Political Media Slant Using Text Data},
-		author={Shen, Lucas},
-		url={https://www.lucasshen.com/research/media.pdf},
-		year={2021}
+	@misc{accuracybias,
+	title={Measuring Political Media Slant Using Text Data},
+	author={Shen, Lucas},
+	url={https://www.lucasshen.com/research/media.pdf},
+	year={2021}
+	}
+
+Published version of the above:
+
+.. code-block:: bib
+
+	@article{shen2026shades,
+	title={Shades of Neutrality: Detecting Media Slant in a Political Monopoly Using Quotation Accuracy},
+	author={Shen, Lucas},
+	journal={ACM Transactions on Intelligent Systems and Technology},
+	year={2026},
+	publisher={Association for Computing Machinery},
+	doi={10.1145/3787455},
+	url={https://doi.org/10.1145/3787455}
 	}
 
 The package is released under the `MIT
